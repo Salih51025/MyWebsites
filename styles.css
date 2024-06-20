@@ -40,7 +40,7 @@ main {
 section {
     padding: 20px;
     border-bottom: 1px solid #ddd;
-    min-height: calc(60vh - 100px); /* En az ekranın yüksekliğinden biraz daha az */
+    min-height: calc(40vh - 100px); /* En az ekranın yüksekliğinden biraz daha az */
 }
 
 #home {
@@ -50,7 +50,7 @@ section {
     align-items: center;
     text-align: center;
     height: 100vh; /* Tam ekran yüksekliği */
-    background: url('background.jpg') no-repeat center center/cover; /* Arka plan resmi ekleniyor */
+    background: url('images/_.jpeg') no-repeat center center/cover; /* Arka plan resmi ekleniyor */
     color: white; /* Metin rengini beyaz yaparak görünürlüğü artırıyoruz */
     position: relative;
     z-index: 1;
