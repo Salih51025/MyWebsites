@@ -50,7 +50,7 @@ section {
     align-items: center;
     text-align: center;
     height: 100vh; /* Tam ekran yüksekliği */
-    background: url('images/_ (1).jpeg') no-repeat center center/cover; /* Arka plan resmi ekleniyor */
+    background-color: #01b291; /* Turkuaz arka plan rengi */
     color: white; /* Metin rengini beyaz yaparak görünürlüğü artırıyoruz */
     position: relative;
     z-index: 1;
@@ -63,7 +63,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(1, 178, 145, 0.56); /* Yarı saydam siyah katman ekleyerek metnin okunabilirliğini artırıyoruz */
+    background: rgba(0, 0, 0, 0.5); /* Yarı saydam siyah katman ekleyerek metnin okunabilirliğini artırıyoruz */
     z-index: -1;
 }
 
