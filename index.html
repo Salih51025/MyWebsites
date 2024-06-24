@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Website</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" type="text/Javascript"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function() {
+        emailjs.init('d_DwnmGk57jH8CiAl');
+      })();
+    </script>
+    
 </head>
-<body>
+<body>  
     <header>
         <nav>
             <ul>
@@ -95,45 +103,18 @@
         </section>        
         <section id="contact">
             <h2>Contact (Currently Unavailable)</h2>
-            <form id="contact-form">
-                <label for="name">Your name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Gmail:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Submit</button>
-            </form>
+            <form id="contact-form" onsubmit="SendMail(); return false;">
+                <input type="text" id="fullName" placeholder="Full Name" required /><br />
+                <input type="email" id="email_id" placeholder="Email" required /><br />
+                <textarea id="message" placeholder="Message" required></textarea><br />
+                <button type="submit">Send</button>
+            </form>            
         </section>
         <section id="about">
             <h1>Contact</h1>
             <p>Phone: +90 5375731878</p>
             <p>Gmail: healer.shrug509@aleeas.com</p>
-        </section>
-        <script>
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-                // Formun otomatik olarak gönderilmesini engelleyelim
-                event.preventDefault();
-                
-                // Formdaki giriş değerlerini alalım
-                var name = document.getElementById('name').value;
-                var email = document.getElementById('email').value;
-                var message = document.getElementById('message').value;
-                
-                // Basit bir doğrulama işlemi: Ad, email ve mesaj boş olmamalı
-                if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-                    alert('Lütfen tüm alanları doldurunuz.');
-                    return;
-                }
-                
-                // Formu burada sunucuya gönderebiliriz (AJAX veya başka bir yöntemle)
-                // Bu örnekte sadece bir alert mesajı göstereceğiz
-                alert('Form başarıyla gönderildi!');
-                
-                // Formu sıfırlayalım
-                this.reset();
-            });
-        </script>                
+        </section>             
     </main>
     <footer>
         <p>&copy; 2024 My Personal Website</p>
