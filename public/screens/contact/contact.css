@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 0;
+    padding: 15px 0;
+    color:white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+/* İletişim formu kapsayıcı */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+/* Şeffaf beyaz arka plana sahip iletişim formu */
+#contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px; /* Maksimum genişlik ayarla */
+    margin-top: 3rem;
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #01b291;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #01b291;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+
+/* Form */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 450px; /* İhtiyacınıza göre genişliği ayarlayın */
+}
+
+form label {
+    margin-top: 60px;
+}
+
+form input, form textarea {
+    border-radius: 15px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+    border: 2px solid #01b291;
+    background-color: black; 
+    color: white; 
+}
+
+
+
+form button {
+    width: 100%;
+    width: 350px;
+    height: 6rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #01b291;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #01b291;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+form button:hover {
+    transform: scale3d(1.03);
+    background-color: #01b291;
+    color: black;
+    box-shadow: 0 0 25px #01b291;
+}

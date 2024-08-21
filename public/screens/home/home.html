@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="script.js"></script>
+</head>
+<body>  
+    <header> 
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('../navbar/nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="../../images/kendiresmim.jpg">
+        </div>
+        <div class="home-content">
+            <h1>Hi it's <span>Salih</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+                <p>Hello! I am an 18-year-old software developer, I have been working on Flutter and Dart technologies for about a year. During this time, I developed two different projects with Flutter and gained significant experience in mobile application development in the process.
+                I started my technology journey with game development on Unreal Engine, and along the way, I strengthened my real-time application development skills using platforms such as Firebase. I also have experience using database systems such as MySQL and PostgreSQL.
+                Recently, I have started to improve my competencies in this language by focusing on JavaScript. In this process, I am trying to learn about modern web development technologies and develop them into practice.  I actively use GitHub, manage my projects here and try to contribute to the open source community. My interest in technology and my desire to learn constantly lead me to try and learn new things.  My goal is to deepen further in the software world and produce innovative solutions.I aim to undertake larger projects in the future and produce solutions that make people's lives easier with technology.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/salih-ayd%C4%B1n-0ba28b286/"> <i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/Salih51025"> <i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/SalihAy9010"> <i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"> <i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <a href="../../images/Software Engineer CV.pdf" class="btn">Download My Resume</a>
+            </div>
+    </section>
+</body>
+</html>

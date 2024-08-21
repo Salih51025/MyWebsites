@@ -17,14 +17,28 @@ function SendMail() {
 
 
 
-document.querySelectorAll('.navigation li a').forEach(link => {
-    link.addEventListener('click', function() {
-        // Önce tüm listelerden active sınıfını kaldır
-        document.querySelectorAll('.navigation li').forEach(item => {
-            item.classList.remove('active');
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.navigation li');
 
-        // Tıklanan listeye active sınıfını ekle
-        this.parentNode.classList.add('active');
-    });
+    function setActiveClass(event) {
+        const target = event.currentTarget;
+
+        // Önce tüm li'lerin aktif sınıfını kaldır
+        items.forEach(item => item.classList.remove('active'));
+
+        // Tıklanan li'ye aktif sınıfını ekle
+        target.classList.add('active');
+
+        // Navigation menüsüne kaydırma efektini ekle
+        document.querySelector('.navigation').classList.add('slide-right');
+
+        // Kaydırma efektinin tamamlandığını belirlemek için bir süre sonra sınıfı kaldır
+        setTimeout(() => {
+            document.querySelector('.navigation').classList.remove('slide-right');
+        }, 1000); // 1 saniye, animasyon süresiyle aynı olmalı
+    }
+
+    // Tüm li öğelerine tıklama olay dinleyicisi ekle
+    items.forEach(item => item.addEventListener('click', setActiveClass));
 });
+

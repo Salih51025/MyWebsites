@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../projects/projects.css">
+</head>
+<body>
+    <header> 
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('../navbar/nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+    </header>
+    <main>
+        <div id="projects">
+            <div class="project">
+                <img src="../../images/ewros_project/Screenshot from 2024-03-28 20-59-47.png" alt="Proje 1">
+                <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-02-55.png" alt="Proje 1">
+                <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-03-11.png" alt="Proje 1">
+                <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-03-45.png" alt="Proje 1">
+                <h3>Project 1</h3>
+                <p>
+                    Elbette, cümlenizi İngilizceye şu şekilde çevirebilirim:                 
+                    This project is an ERP (Enterprise Resource Planning) application developed using Flutter and Dart, and it also utilizes the Firebase platform.
+                    This ERP application, which has been developed, enables businesses to manage their daily operations. It is designed to optimize business processes and increase efficiency. The application includes the following core features:
+                    User Management and Authorization: Provides different user roles (admin, staff, customer, etc.) and authorization mechanisms for these roles.
+                    Inventory Management: Features such as tracking the status of product stocks, stock entry/exit operations, and automatic monitoring of stock levels.
+                    Sales and Order Management: This module includes the management of customer orders, tracking order statuses, and invoicing processes.
+                    Financial Management: Offers features that facilitate financial operations such as tracking income and expenses, creating invoices, and managing payments.
+                    Reporting and Analysis: Provides detailed reports and charts to monitor business performance. Real-time visualization of data such as sales analysis, stock movements, and financial reports is possible.
+                    Mobile and Web Compatible: Offers seamless operation on both mobile devices and web browsers, allowing users to access the application anytime and anywhere.
+                    This ERP application focuses on increasing efficiency and improving decision-making processes by enabling businesses to manage their daily operations on a centralized platform. Thanks to Flutter and Firebase technologies, it provides a reliable and scalable solution enhanced with user-friendly interfaces.</p>
+            </div>
+            <div class="project">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-46-02.png" alt="Proje 2">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-48-19.png" alt="Proje 2">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-48-57.png" alt="Proje 2">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-49-35.png" alt="Proje 2">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-49-49.png" alt="Proje 2">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 22-01-32.png" alt="Proje 2">
+                <img src="../../images/eyfel_project/Screenshot from 2024-03-28 22-09-45.png" alt="Proje 2">               
+                <h3>Project 2</h3>
+                <p>Factory Management Application
+                    This application is an ERP (Enterprise Resource Planning) solution developed specifically for factory businesses, and is designed to work on mobile platforms using Flutter and Dart technologies. Additionally, MySQL is used as the database, thus providing strong data management.                   
+                    Key Features:
+                        Category and Product Management: Categorizing and managing the products produced or stocked by the factory. Users can add it to their favorites and add it to their cart.                   
+                        Order Management: Users can create orders, make payments and track their order status through the application. Payment transactions are carried out securely.
+                        Cargo Management: Information such as whether the orders received have been shipped or not, shipment status and shipping tracking can be easily viewed by users.
+                        Reporting and Analysis: Detailed reports and graphs are provided for factory performance. Data such as product sales analyses, inventory management and financial reports can be viewed and analyzed instantly by users.
+                        Mobile and Web Compatible: It offers seamless operation on both mobile application and web browser. In this way, managers and employees can access anytime and anywhere.
+                    This ERP solution is designed to increase the efficiency of businesses and improve decision-making processes, with a focus on optimizing factory management processes. With its user-friendly interface and reliable structure, it helps factories manage their daily operations effectively.</p>
+            </div>
+            <div class="project">
+                <img src="../../images/shinex_project\shinex1.PNG" alt="Proje 3">
+                <img src="../../images/shinex_project\shinex2.PNG" alt="Proje 3">
+                <img src="../../images/shinex_project\shinex3.PNG" alt="Proje 3">
+                <img src="../../images/shinex_project\shinex4.PNG" alt="Proje 3">         
+                <img src="../../images/shinex_project\shinex5.PNG" alt="Proje 3">     
+                <img src="../../images/shinex_project\shinex8.PNG" alt="Proje 3">     
+                <img src="../../images/shinex_project\shinex10.PNG" alt="Proje 3">           
+                <img src="../../images/shinex_project\shinex13.PNG" alt="Proje 3">     
+                <img src="../../images/shinex_project\shinex14.PNG" alt="Proje 3">     
+                <img src="../../images/shinex_project\shinex12.PNG" alt="Proje 3">  
+                <h3>Project 3</h3>
+                <p>Factory Management Application
+                    This application is an ERP (Enterprise Resource Planning) solution developed specifically for factory businesses, and is designed to work on mobile platforms using Flutter and Dart technologies. Additionally, MySQL is used as the database, thus providing strong data management.
+                    Key Features:
+                        Category and Product Management: Categorizing and managing the products produced or stocked by the factory. Users can add it to their favorites and add it to their cart.
+                        Order Management: Users can create orders, make payments and track their order status through the application. Payment transactions are carried out securely.
+                        Cargo Management: Information such as whether the orders received have been shipped or not, shipment status and shipping tracking can be easily viewed by users.
+                        Reporting and Analysis: Detailed reports and graphs are provided for factory performance. Data such as product sales analyses, inventory management and financial reports can be viewed and analyzed instantly by users.
+                        Mobile and Web Compatible: It offers seamless operation on both mobile application and web browser. In this way, managers and employees can access anytime and anywhere.
+                    This ERP solution is designed to increase the efficiency of businesses and improve decision-making processes, with a focus on optimizing factory management processes. With its user-friendly interface and reliable structure, it helps factories manage their daily operations effectively.</p>
+            </div>
+        </div>        
+    </main>
+</body>
+</html>

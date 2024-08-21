@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Project */
+.project {
+    margin-left: 20px;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap; /* Resimleri yan yana koyar ve taşan resimler bir sonraki satıra geçer */
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.project img {
+    max-width: 30%; /* Resimler arasındaki boşluk için %100 yerine %48 kullandık */
+    height: auto;
+    margin: 1%;
+}
+
+
+.project h3, .project p {
+    width: 100%;
+    text-align: left;
+    text-align: start;
+    font-size: 1.5rem;
+}
