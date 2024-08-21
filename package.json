@@ -12,7 +12,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://salih51025.github.io/MyWebsites/",
   "devDependencies": {
     "gh-pages": "^5.0.0"
   }
