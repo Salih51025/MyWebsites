@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 // Diğer tüm istekler için home.html dosyasını sunuyoruz
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'home.html'));
+  res.sendFile(path.join(__dirname, 'public', 'screens', 'home', 'home.html'));
 });
 
 app.listen(port, () => {
