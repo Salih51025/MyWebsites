@@ -42,3 +42,18 @@ document.addEventListener('DOMContentLoaded', function() {
     items.forEach(item => item.addEventListener('click', setActiveClass));
 });
 
+
+
+document.querySelector('.hamburger').addEventListener('click', function() {
+    document.querySelector('nav').classList.toggle('active');
+});
+
+
+
+ // Sayfada herhangi bir yere tıklanıldığında, fade-out ve scale-out animasyonu başlatılır
+       document.addEventListener("click", function() {
+            document.body.classList.add("fade-out");
+            setTimeout(function() {
+                window.location.href = "screens/home/home.html";
+            }, 100); // Animasyonun bitmesini bekleyin
+        });
