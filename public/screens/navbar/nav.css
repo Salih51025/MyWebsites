@@ -96,15 +96,15 @@ nav a.active{
     nav{
         position: absolute;
         display: none;
-        top: 0;
+        top: 10vh;
         right: 0;
-        width: 40%;
+        width: 50%;
         border-left: 3px solid #01b291;
         border-bottom: 3px solid #01b291;
         border-bottom-left-radius: 2rem;
-        padding: 1rem solid;
+        padding: 2rem;
         background-color: #161616;
-        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+        border-top: 0.3rem solid rgba(0, 0, 0, 0.1);
     }
 
     nav.active{
@@ -114,7 +114,8 @@ nav a.active{
     nav a{
         display: block;
         font-size: 2rem;
-        margin: 3rem 0;
+        margin: 2rem 0;
+        text-align: center;
     }
 
     nav a:hover,

@@ -4,38 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../navbar/nav.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">   
-    <script> 
-        document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.navigation li');
-
-    function setActiveClass(event) {
-        const target = event.currentTarget;
-
-        // Önce tüm li'lerin aktif sınıfını kaldır
-        items.forEach(item => item.classList.remove('active'));
-
-        // Tıklanan li'ye aktif sınıfını ekle
-        target.classList.add('active');
-
-        // Navigation menüsüne kaydırma efektini ekle
-        document.querySelector('.navigation').classList.add('slide-right');
-
-        // Kaydırma efektinin tamamlandığını belirlemek için bir süre sonra sınıfı kaldır
-        setTimeout(() => {
-            document.querySelector('.navigation').classList.remove('slide-right');
-        }, 1000); // 1 saniye, animasyon süresiyle aynı olmalı
-    }
-
-    // Tüm li öğelerine tıklama olay dinleyicisi ekle
-    items.forEach(item => item.addEventListener('click', setActiveClass));
-    });
-
-
-    document.querySelector('.hamburger').addEventListener('click', function() {
-        document.querySelector('nav').classList.toggle('active');
-    });
-</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <header>
@@ -51,5 +20,37 @@
             </div>
         </div>
     </header>
+
+    <!-- Move the script here -->
+    <script> 
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.navigation li');
+
+            function setActiveClass(event) {
+                const target = event.currentTarget;
+
+                // Remove active class from all li elements
+                items.forEach(item => item.classList.remove('active'));
+
+                // Add active class to the clicked li element
+                target.classList.add('active');
+
+                // Add sliding effect to the navigation menu
+                document.querySelector('.navigation').classList.add('slide-right');
+
+                // Remove sliding effect after animation completes
+                setTimeout(() => {
+                    document.querySelector('.navigation').classList.remove('slide-right');
+                }, 1000); // Match with the animation duration
+            }
+
+            // Add click event listener to all li elements
+            items.forEach(item => item.addEventListener('click', setActiveClass));
+        });
+
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
