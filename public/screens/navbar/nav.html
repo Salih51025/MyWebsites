@@ -4,53 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../navbar/nav.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">Salih</a>
-            <nav>
-                <a href="../home/home.html" class="active">Home</a>
-                <a href="../projects/projects.html">Projects</a>
-                <a href="../contact/contact.html">Contact</a>
-            </nav>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="logo">
+                <a href="#">Salih</a>
             </div>
+            <input type="checkbox" id="check">
+            <nav class="menu">
+                <li><a href="../home/home.html" class="active">Home</a></li>
+                <li><a href="../projects/projects.html">Projects</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+            </nav>
+            <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
         </div>
     </header>
-
-    <!-- Move the script here -->
-    <script> 
-        document.addEventListener('DOMContentLoaded', function() {
-            const items = document.querySelectorAll('.navigation li');
-
-            function setActiveClass(event) {
-                const target = event.currentTarget;
-
-                // Remove active class from all li elements
-                items.forEach(item => item.classList.remove('active'));
-
-                // Add active class to the clicked li element
-                target.classList.add('active');
-
-                // Add sliding effect to the navigation menu
-                document.querySelector('.navigation').classList.add('slide-right');
-
-                // Remove sliding effect after animation completes
-                setTimeout(() => {
-                    document.querySelector('.navigation').classList.remove('slide-right');
-                }, 1000); // Match with the animation duration
-            }
-
-            // Add click event listener to all li elements
-            items.forEach(item => item.addEventListener('click', setActiveClass));
-        });
-
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('nav').classList.toggle('active');
-        });
-    </script>
 </body>
 </html>

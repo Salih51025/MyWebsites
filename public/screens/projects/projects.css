@@ -71,3 +71,47 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .project img {
+        max-width: 45%; /* Tabletler için resimlerin genişliği %45 olarak ayarlandı */
+    }
+}
+
+@media (max-width: 480px) {
+    .project {
+        flex-direction: column; /* Telefonlar için proje elemanlarını dikey hizalar */
+    }
+
+    .project img {
+        max-width: 100%; /* Telefonlar için resimler %100 genişlikte */
+        margin-bottom: 15px;
+    }
+
+    .project h3, .project p {
+        font-size: 1.2rem; /* Telefonlar için yazı boyutu küçültüldü */
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .img-container img {
+        width: calc(45% - 20px); /* Tabletler için resimlerin genişliği %45 olarak ayarlandı */
+    }
+
+    .img-aciklama-container {
+        width: 90%; /* Tabletler için açıklama konteyner genişliği %90 olarak ayarlandı */
+    }
+}
+
+@media (max-width: 480px) {
+    .img-container img {
+        width: calc(100% - 20px); /* Telefonlar için resimlerin genişliği %100 olarak ayarlandı */
+    }
+
+    .img-aciklama-container {
+        width: 95%; /* Telefonlar için açıklama konteyner genişliği %95 olarak ayarlandı */
+    }
+}

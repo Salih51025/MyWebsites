@@ -102,3 +102,47 @@ form button:hover {
     color: black;
     box-shadow: 0 0 25px #01b291;
 }
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #contact {
+        padding: 1rem;
+        max-width: 350px;
+    }
+
+    form {
+        max-width: 100%; /* Tabletler için form genişliği */
+    }
+
+    form input, form textarea {
+        padding: 20px; /* Tabletler için iç boşluk ayarları */
+    }
+
+    form button {
+        max-width: 100%; /* Tabletler için buton genişliği */
+    }
+}
+
+@media (max-width: 480px) {
+    #contact {
+        padding: 0.5rem;
+    }
+
+    form {
+        max-width: 95%; /* Telefonlar için form genişliği */
+    }
+
+    form input, form textarea {
+        padding: 8px; /* Telefonlar için iç boşluk ayarları */
+    }
+
+    form button {
+        height: 5rem; /* Telefonlar için buton yüksekliği */
+        max-width: 100%; /* Telefonlar için buton genişliği */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Telefonlar için başlık boyutu küçültüldü */
+    }
+}
