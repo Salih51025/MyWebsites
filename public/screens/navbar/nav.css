@@ -21,7 +21,7 @@ body {
 }
 
 header {
-    margin-top: 20px;
+    margin-top: 10px;
     position: fixed;
     top: 0;
     left: 0;
@@ -126,7 +126,7 @@ header {
         position: fixed;
         width: 50%;
         height: 45vh;
-        top: 10px;
+        top: 0;
         right: -100%;
         z-index: 100;
         transition: all 0.2s ease-in-out;
