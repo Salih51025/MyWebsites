@@ -107,7 +107,7 @@ form button:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
     #contact {
-        padding: 1rem;
+        padding: 3rem;
         max-width: 350px;
     }
 
@@ -126,15 +126,17 @@ form button:hover {
 
 @media (max-width: 480px) {
     #contact {
-        padding: 0.5rem;
+        padding: 2.5rem;
+        max-width: 350px;
     }
 
     form {
-        max-width: 95%; /* Telefonlar için form genişliği */
+        max-width: 100%; /* Telefonlar için form genişliği */
     }
 
     form input, form textarea {
-        padding: 8px; /* Telefonlar için iç boşluk ayarları */
+        padding: 15px; /* Telefonlar için iç boşluk ayarları */
+        font-size: 1.2rem; /* Daha küçük ekranlar için metin boyutu ayarla */
     }
 
     form button {

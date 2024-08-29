@@ -43,7 +43,7 @@ header {
 }
 
 .logo {
-    padding-left: 20px; /* Sol padding */
+    padding-left: 10px; /* Sol padding */
 }
 
 .logo a {
@@ -105,7 +105,7 @@ header {
 
 .open-menu {
     top: 50%;
-    right: 20px;
+    right: 70px;
     transform: translateY(-50%);
 }
 
