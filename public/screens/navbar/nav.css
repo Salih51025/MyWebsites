@@ -125,7 +125,7 @@ header {
         justify-items: center;
         position: fixed;
         width: 50%;
-        height: 50vh;
+        height: 35vh;
         top: 0;
         right: -100%;
         z-index: 100;
@@ -133,7 +133,7 @@ header {
         border-left: 3px solid #01b291;
         border-bottom: 3px solid #01b291;
         border-bottom-left-radius: 2rem;
-        padding: 2rem;
+        padding: 1.5rem;
         background-color: #161616;
         border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
     }
