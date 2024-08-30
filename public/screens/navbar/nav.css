@@ -72,6 +72,7 @@ header {
 .menu li a {
     text-decoration: none;
     text-align: center;
+    position: relative;
     text-transform: uppercase;
     font-size: 1.8rem;
     color: white;
@@ -86,7 +87,7 @@ header {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 3px;
+    height: 2px;
     background-color: #01b291;
     transition: 0.15s ease-in-out;
 }
