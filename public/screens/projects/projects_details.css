@@ -85,6 +85,6 @@ body{
     }
 
     .img-container img {
-        width: 100%; /* Resimler ekran genişliğine göre %100 olacak */
+        width: 50%; /* Resimler ekran genişliğine göre %100 olacak */
     }
 }
