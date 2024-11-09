@@ -118,6 +118,9 @@ h1{
         padding: 20px;
         flex-direction: column; /* Dikey hizalama */
     }
+    .project-container img{
+        width: 200px;
+    }
 
     .project-container {
         max-width: 100%;
@@ -138,9 +141,7 @@ h1{
         max-width: 100%;
     }
 
-    .project-container img{
-        width: 50%;
-    }
+    
      
     .project-details {
         font-size: 0.85rem;
