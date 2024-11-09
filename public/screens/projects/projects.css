@@ -138,6 +138,10 @@ h1{
         max-width: 100%;
     }
 
+    .project-container img{
+        width: 50%;
+    }
+     
     .project-details {
         font-size: 0.85rem;
     }
