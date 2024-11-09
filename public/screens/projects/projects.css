@@ -69,12 +69,12 @@ body {
 }
 
 .project-container img {
-    transition: transform 0.6s ease, box-shadow 0.6s ease; /* Geçiş süresini artırdık */
+    transition: transform 0.8s ease, box-shadow 0.8s ease; /* Geçiş süresini artırdık */
     transform-style: preserve-3d;
     box-shadow: var(--box-shadow);
     margin-left: 100px;
     width: 500px;
-    height: 40vh;
+    height: auto;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -82,7 +82,7 @@ body {
 }
 
 .project-container:hover img {
-    transform: rotateY(20deg) rotateX(10deg);
+    transform: rotateY(20deg) rotateX(15deg);
     box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
 }
 
@@ -92,12 +92,10 @@ h1{
 }
 
 .project-details {
-    transition: transform 1s ease, box-shadow 1s ease; /* Geçiş süresini artırdık */
-    transform-style: preserve-3d;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    margin-left: 40px;
-    width: 75%;
-    height: 25vh;
+    margin-left: 20px;
+    width: auto;
+    height: auto;
     font-size: 12px;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -107,28 +105,28 @@ h1{
     box-shadow: var(--box-shadow);
 }
 
-.project-container:hover + .project-details {
-    transform: rotateY(20deg) rotateX(20deg); /* Hover durumunda animasyonu tetikleme */
-    box-shadow: var(--box-shadow-hover);
-}
-
 /* Responsive Tasarım (Mobil Uyumluluk) */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
         flex-direction: column; /* Dikey hizalama */
     }
-    .project-container img{
-        width: 200px;
-    }
 
     .project-container {
-        max-width: 100%;
+        max-width: 100%; /* Genişliği %100 yapıyoruz */
+    }
+
+    .project-container img {
+        width: 90%; /* Resmin genişliği, kapsayıcı elementin genişliğine göre %100 olacak */
+        height: auto; /* Yükseklik, genişlik ile orantılı olacak */
+        object-fit: contain; /* Resmin orantıları korunarak kapsayıcı alana sığdırılacak */
+        max-width: 100%; /* Resim, ekran boyutuna göre genişleyebilir ancak taşmaz */
     }
 
     .project-details {
         max-width: 100%;
         font-size: 0.9rem; /* Küçük ekranlarda daha okunabilir font boyutu */
+        margin-top: 10px; /* Yukarıdan biraz boşluk ekledik */
     }
 
     h1 {
@@ -137,14 +135,17 @@ h1{
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
     .project-container {
         max-width: 100%;
     }
 
-    
-     
     .project-details {
         font-size: 0.85rem;
+        margin-top: 15px; /* Resmin altına biraz boşluk bırakarak dikeyde hizalanmasını sağladık */
     }
 
     .back-btn {

@@ -65,26 +65,34 @@ body{
     transform: translateY(0);
 }
 
-/* Media Queries - Responsive düzenlemeler */
+/* Media Queries: Mobil ve Tablet Uyumluluğu */
 
-/* Tablet ve daha küçük ekranlar için */
-@media (max-width: 768px) {
+/* Mobil Cihazlar (max-width: 767px) */
+@media (max-width: 767px) {
     .img-container {
-        width: 90vw; /* Konteynerin genişliğini biraz küçült */
+        width: 90vw; /* Konteyneri ekran boyutuna göre genişlet */
+        height: 50vh;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
     }
 
     .img-container img {
-        width: 48%; /* Resimler %48 genişlikte olacak (iki yan yana) */
+        width: 100%;
+        left: 0; /* Resimleri sıralı şekilde yerleştir */
     }
 }
 
-/* Telefonlar için */
-@media (max-width: 480px) {
+/* Tablet Cihazlar (max-width: 1024px) */
+@media (max-width: 1024px) {
     .img-container {
-        width: 95vw; /* Genişlik daha da küçülür */
+        width: 75vw; /* Konteyneri daha küçük yap */
+        height: 55vh;
+        padding: 15px;
     }
 
     .img-container img {
-        width: 50%; /* Resimler ekran genişliğine göre %100 olacak */
+        width: 45%;
+        left: 0;
     }
 }
