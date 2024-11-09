@@ -1,34 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="index.css">
     <script>
-       // Sayfada herhangi bir yere tıklanıldığında, fade-out ve scale-out animasyonu başlatılır
-       document.addEventListener("click", function() {
-            document.body.classList.add("fade-out");
-            setTimeout(function() {
-                window.location.href = "screens/home/home.html";
-            }, 100); // Animasyonun bitmesini bekleyin
-        });
-    </script>   
+        window.onload = function () {
+            let hasScrolled = false;
+            let scrollTimeout;
+
+            function redirect() {
+                document.body.classList.add("fade-out");
+                console.log("Yönlendiriliyor...");
+                setTimeout(function () {
+                    window.location.href = "screens/home/home.html"; // Yönlendirme işlemi
+                }, 1000); // 1 saniye bekle
+            }
+
+            window.addEventListener("scroll", function () {
+                console.log("Sayfa kaydırıldı."); // Kontrol için
+                if (!hasScrolled) {
+                    hasScrolled = true;
+                    redirect(); // İlk kaydırmada yönlendirme yap
+                }
+
+                // Kaydırma olduğunda zamanlayıcıyı sıfırla
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function () {
+                    console.log("8 saniye boyunca kaydırılmadı, yönlendiriliyor...");
+                    redirect(); // 8 saniye sonra yönlendirme yap
+                }, 8000); // 8 saniye bekle
+            });
+
+            // Sayfa yüklendiğinde otomatik yönlendirme
+            scrollTimeout = setTimeout(function () {
+                console.log("Sayfa yüklendi, 8 saniye sonra yönlendiriliyor...");
+                redirect(); // Yüklemeden sonra yönlendirme
+            }, 8000); // 8 saniye bekle
+        };
+    </script>
 </head>
 <body>
     <div class="hero">
-        <div class="content">
-            <h1>Welcome</h1>
+        <div class="container">
+            <h1 id="welcome-text">WELCOME</h1>
+            <h2 id="website-text">TO MY WEBSITE</h2>
         </div>
         <div class="bubbles">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
+            <img src="../../images/6e69d8de-7f88-4c06-bc6f-ecbd746e69e0.png">
         </div>
     </div>
+    <div class="spacer"></div>
 </body>
+
 </html>

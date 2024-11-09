@@ -1,158 +1,163 @@
+/* Temel sıfırlama ve genel stiller */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
+    box-sizing: border-box; /* Boyut hesaplamasında kenar boşluklarını dahil et */
+    text-decoration: none; /* Alt çizgi kaldır */
+    border: none; /* Kenar kaldır */
+    outline: none; /* Odak dışı görünüm kaldır */
     font-family: 'Poppins', sans-serif;
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 62.5%; /* 1rem = 10px ayarı */
 }
 
 body {
     width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    background-color: black;
+    height: 100vh; 
+    overflow-x: hidden; /* Yatay kaydırmayı gizle */
+    background-color: black; 
     color: white;
 }
 
+/* Header stilleri */
 header {
-    margin-top: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem 10%;
+    margin-top: 10px; 
+    position: fixed; /* Sabit konumlandırma */
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 1rem 10%; 
     background-color: transparent;
-    filter: drop-shadow(20px);
-    z-index: 100;
+    filter: drop-shadow(20px); 
+    z-index: 100; /* Katman sırası */
 }
 
+/* Navigasyon konteyneri */
 .nav-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Alanı eşit dağıt */
+    align-items: center; /* Dikeyde ortala */
     width: 100%;
-    background-color: #000000;
-    border-radius: 1rem;
-    padding: 0 20px; /* Sağ ve sol padding */
+    background-color: #000000; 
+    border-radius: 1rem; 
+    padding: 0 20px; 
 }
 
+/* Logo stilleri */
 .logo {
-    padding-left: 10px; /* Sol padding */
+    padding-left: 10px; 
 }
 
 .logo a {
     font-size: 4rem;
     color: #01b291;
     font-weight: 800;
-    cursor: pointer;
-    transition: 0.5s ease;
+    cursor: pointer; /* Fare simgesi */
+    transition: transform 0.5s ease; /* Hover geçişi */
 }
 
 .logo:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Hoverda büyütme efekti */
 }
 
+/* Menü stilleri */
 .menu {
-    display: flex;
-    list-style-type: none;
-    padding-right: 20px; /* Sağ padding */
+    display: flex; /* Esnek düzen */
+    list-style-type: none; /* Liste stili kaldır */
+    padding-right: 20px; 
 }
 
 .menu li {
-    padding-left: 20px;
-    list-style-type: none;
+    padding-left: 20px; 
 }
 
 .menu li a {
-    text-decoration: none;
+    text-decoration: none; /* Alt çizgi kaldır */
     text-align: center;
-    position: relative;
-    text-transform: uppercase;
+    position: relative; 
+    text-transform: uppercase; /* Büyük harf */
     font-size: 1.8rem;
-    color: white;
-    font-weight: 500;
-    transition: 0.15s ease-in-out;
-    border-bottom: 3px solid transparent;
+    color: white; 
+    font-weight: 500; 
+    transition: border-bottom 0.15s ease-in-out; /* Kenar geçişi */
+    border-bottom: 3px solid transparent; 
 }
 
 .menu li a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #01b291;
-    transition: 0.15s ease-in-out;
+    content: ""; /* İçerik */
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 0; 
+    height: 2px; 
+    background-color: #01b291; 
+    transition: width 0.15s ease-in-out; /* Kenar geçişi */
 }
 
-.menu li a:hover:after {
-    width: 100%;
+.menu li a:hover::after {
+    width: 100%; /* Hoverda tam genişlik */
 }
 
+/* Menü açma/kapama simgeleri */
 .open-menu, .close-menu {
-    position: absolute;
-    color: #01b291;
-    cursor: pointer;
-    font-size: 2rem;
-    display: none;
+    position: absolute; 
+    color: #01b291; 
+    cursor: pointer; /* Fare simgesi */
+    font-size: 2rem; 
+    display: none; /* Varsayılan olarak gizle */
 }
 
 .open-menu {
-    top: 50%;
-    right: 70px;
-    transform: translateY(-50%);
+    top: 50%; 
+    right: 65px; 
+    transform: translateY(-50%); /* Dikey ortalama */
 }
 
 .close-menu {
-    top: 20px;
-    right: 20px;
+    top: 20px; 
+    right: 30px; 
 }
 
 #check {
-    display: none;
+    display: none; /* Gizli checkbox */
 }
 
-@media(max-width:610px) {
+/* Mobil görünüm stilleri */
+@media (max-width: 610px) {
     .menu {
-        flex-direction: column;
+        flex-direction: column; /* Dikey düzen */
         align-items: center;
-        justify-items: center;
-        position: fixed;
+        position: fixed; /* Sabit konum */
         width: 50%;
-        height: 45vh;
-        top: 0;
-        right: -100%;
-        z-index: 100;
-        transition: all 0.2s ease-in-out;
-        border-left: 3px solid #01b291;
+        height: 25vh;
+        top: 0; 
+        right: -100%; /* Dışarıda başlangıç */
+        z-index: 100; /* Katman sırası */
+        transition: right 0.2s ease-in-out; /* Geçiş efekti */
+        border-left: 3px solid #01b291; 
         border-bottom: 3px solid #01b291;
         border-bottom-left-radius: 2rem;
-        padding: 1.5rem;
-        background-color: #161616;
+        padding: 1.5rem; 
+        background-color: #161616; 
         border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
     }
 
     .menu li {
-        margin-top: 40px;
+        margin-top: 40px; 
     }
 
     .menu li a {
-        padding: 10px;
-        font-size: 16px;
+        padding: 10px; 
+        font-size: 1.6rem; 
     }
 
     .open-menu, .close-menu {
-        display: block;
+        display: block; /* Göster */
     }
 
     #check:checked ~ .menu {
-        right: 0;
+        right: 0; /* Açıldığında sağa kaydır */
     }
 }

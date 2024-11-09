@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../projects/projects.css">
+    <link rel="stylesheet" href="../projects/projects_details.css">
     <script src="../../script.js"></script>
 </head>
+
 <body>
-    <header> 
-    <div id="nav-placeholder"></div>
-    <script>
-        fetch('../navbar/nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
+    <header>
+        <div id="nav-placeholder"></div>
+        <script>
+            fetch('../navbar/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nav-placeholder').innerHTML = data;
+                });
+
+            const imgContainer = document.querySelector('.img-container');
+
+            imgContainer.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                imgContainer.scrollLeft += e.deltaY; // Scroll kaydırma
             });
-    </script>
+
+            // Resmi ve ek içeriği toggle yapan fonksiyon
+            function toggleProject(container) {
+                const img = container.querySelector('.project-image');
+                const additionalContent = document.getElementById('additional-content' + container.id.replace('project', ''));
+
+                if (img.style.display !== 'none') {
+                    img.style.display = 'none'; // Resmi gizle
+                    additionalContent.classList.remove('hidden'); // Ek içeriği göster
+                } else {
+                    img.style.display = 'block'; // Resmi geri getir
+                    additionalContent.classList.add('hidden'); // Ek içeriği gizle
+                }
+            }
+
+            // "Back" butonuna tıklayınca resmi geri getiren fonksiyon
+            function toggleProjectback(projectId) {
+                const img = document.querySelector('#' + projectId + ' .project-image'); // İlgili projenin resmini seç
+                const additionalContent = document.getElementById('additional-content' + projectId.replace('project', '')); // İlgili projenin ek içeriğini seç
+
+                img.style.display = 'block'; // Resmi göster
+                additionalContent.classList.add('hidden'); // Ek içeriği gizle
+            }
+        </script>
     </header>
     <main>
-        <div id="projects">
-            <div class="project">
+        <div class="container">
+            <div class="project-container" id="project1" onclick="toggleProject(this)">
+                <img src="../../images/39.CRM-ERP-integration.png" class="project-image">
+            </div>
+            <div class="hidden" id="additional-content1">
                 <div class="img-container">
                     <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-46-02.png" alt="Proje 2">
                     <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-48-19.png" alt="Proje 2">
@@ -27,49 +63,87 @@
                     <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-49-35.png" alt="Proje 2">
                     <img src="../../images/eyfel_project/Screenshot from 2024-03-28 21-49-49.png" alt="Proje 2">
                     <img src="../../images/eyfel_project/Screenshot from 2024-03-28 22-01-32.png" alt="Proje 2">
-                    <img src="../../images/eyfel_project/Screenshot from 2024-03-28 22-09-45.png" alt="Proje 2"> 
-                </div>              
-            <div class="img-aciklama-container">
-                <h3>Project 1</h3>
-                <h2>Custom Mobile Application for Factory:</h2>
-                <p>In this project, I developed a mobile application specific to a factory using Flutter. The application includes features such as shopping, adding products to the cart, adding to favorites, management via the admin panel, and profile updating. Users can view and purchase products by logging in with their email and password. Also, I integrated this mobile app with the desktop app. For this integration, I created APIs using MySQL and ensured data synchronization between the two platforms. In this way, users can enjoy the same experience on both mobile and desktop.</p>
+                    <img src="../../images/eyfel_project/Screenshot from 2024-03-28 22-09-45.png" alt="Proje 2">
+                </div>
+                <button class="back-btn" onclick="toggleProjectback('project1')">Back</button>
             </div>
+            <div class="project-details">
+                <h1>Custom Mobile Application for Factory</h1>
+                <p>
+                    In this project, I developed a mobile application specific to a factory using Flutter. The
+                    application includes features such as shopping, adding products to the cart, adding to
+                    favorites, management via the admin panel, and profile updating. Users can view and purchase
+                    products by logging in with their email and password. Also, I integrated this mobile app with
+                    the desktop app. For this integration, I created APIs using MySQL and ensured data
+                    synchronization between the two platforms. In this way, users can enjoy the same experience on
+                    both mobile and desktop.
+                </p>
             </div>
-            <div class="project">
+        </div>
+        <div class="container">
+            <div class="project-details">
+                <h1>ERP Mobil Aplication</h1>
+                <p>
+                    In this project, I developed an ERP (Enterprise Resource Planning) application that covers all
+                    processes from the material purchasing stage of a product to the final sale. I implemented this
+                    application using Flutter and Firebase. The application includes many important features such as
+                    tracking shipments, placing orders, recording sales, and graphs that calculate monthly net
+                    income. There are also special pages that can keep track of employees. When logged in as admin,
+                    it is possible to perform all operations. Separate user login information and passwords are
+                    defined for shippers, product preparers and other users. Users access certain pages based on
+                    their authority, thus providing a customized experience for each role.
+                </p>
+            </div>
+            <div class="hidden" id="additional-content2">
                 <div class="img-container">
                     <img src="../../images/ewros_project/Screenshot from 2024-03-28 20-59-47.png" alt="Proje 1">
                     <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-02-55.png" alt="Proje 1">
                     <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-03-11.png" alt="Proje 1">
-                    <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-03-45.png" alt="Proje 1">    
-                </div>    
-                <div class="img-aciklama-container">
-                <h3>Project 2</h3>
-                <h2>ERP Application:</h2>
-                <p>In this project, I developed an ERP (Enterprise Resource Planning) application that covers all processes from the material purchasing stage of a product to the final sale. I implemented this application using Flutter and Firebase. The application includes many important features such as tracking shipments, placing orders, recording sales, and graphs that calculate monthly net income. There are also special pages that can keep track of employees. When logged in as admin, it is possible to perform all operations. Separate user login information and passwords are defined for shippers, product preparers and other users. Users access certain pages based on their authority, thus providing a customized experience for each role.</p>
+                    <img src="../../images/ewros_project/Screenshot from 2024-03-28 21-03-45.png" alt="Proje 1">
                 </div>
+                <button class="back-btn" onclick="toggleProjectback('project2')">Back</button>
             </div>
-            <div class="project">
+            <div class="project-container" id="project2" onclick="toggleProject(this)">
+                <img src="../../images/erp-programi-secerken-dikkat-etmeniz-gerekenler.webp" class="project-image">
+            </div>
+        </div>
+        <div class="container">
+            <div class="project-container" id="project3" onclick="toggleProject(this)">
+                <img src="../../images/erp-programi-secerken-dikkat-etmeniz-gerekenler.webp" class="project-image">
+            </div>
+            <div class="hidden" id="additional-content3">
                 <div class="img-container">
-                <img src="../../images/shinex_project\shinex1.PNG" alt="Proje 3">
-                <img src="../../images/shinex_project\shinex2.PNG" alt="Proje 3">
-                <img src="../../images/shinex_project\shinex3.PNG" alt="Proje 3">
-                <img src="../../images/shinex_project\shinex4.PNG" alt="Proje 3">         
-                <img src="../../images/shinex_project\shinex5.PNG" alt="Proje 3">     
-                <img src="../../images/shinex_project\shinex8.PNG" alt="Proje 3">     
-                <img src="../../images/shinex_project\shinex10.PNG" alt="Proje 3">           
-                <img src="../../images/shinex_project\shinex13.PNG" alt="Proje 3">     
-                <img src="../../images/shinex_project\shinex14.PNG" alt="Proje 3">     
-                <img src="../../images/shinex_project\shinex12.PNG" alt="Proje 3">  
+                    <img src="../../images/shinex_project\shinex1.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex2.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex3.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex4.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex5.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex8.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex10.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex13.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex14.PNG" alt="Proje 3">
+                    <img src="../../images/shinex_project\shinex12.PNG" alt="Proje 3">
                 </div>
-            <div class="img-aciklama-container">
-                <h3>Project 3</h3>
-                <h2>Advanced Shopping Mobile Application:</h2>
-                <p>This shopping mobile application, which I developed using Flutter and Firebase, includes all the features found in a classic shopping application. In this project, I focused specifically on code organization and user experience. With the experience I gained for factory performance. Data such as product sales analyses, inventory management and financial reports can be viewed and analyzed instantly by users.
-                Mobile and Web Compatible: It offers seamless operation on both mobile application and web browser. In this way, managers and employees can access anytime and anywhere.
-                This ERP solution is designed to increase the efficiency of businesses and improve decision-making processes, with a focus on optimizing factory management processes. With its user-friendly interface and reliable structure, it helps factories manage their daily operations effectively.</p>
+                <button class="back-btn" onclick="toggleProjectback('project3')">Back</button>
             </div>
+            <div class="project-details">
+                <h1>Advanced Shopping Mobile Application</h1>
+                <p>
+                    This shopping mobile application, which I developed using Flutter and Firebase, includes all the
+                    features found in a classic shopping application. In this project, I focused specifically on
+                    code organization and user experience. With the experience I gained for factory performance.
+                    Data such as product sales analyses, inventory management and financial reports can be viewed
+                    and analyzed instantly by users.
+                    Mobile and Web Compatible: It offers seamless operation on both mobile application and web
+                    browser. In this way, managers and employees can access anytime and anywhere.
+                    This ERP solution is designed to increase the efficiency of businesses and improve
+                    decision-making processes, with a focus on optimizing factory management processes. With its
+                    user-friendly interface and reliable structure, it helps factories manage their daily operations
+                    effectively.
+                </p>
             </div>
-        </div>        
+        </div>
     </main>
 </body>
+
 </html>

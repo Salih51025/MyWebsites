@@ -1,0 +1,90 @@
+/* Global Ayarlar */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Box modeline uyum sağlama */
+}
+
+body{
+    background-color: black;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+
+/* Resim Konteyneri */
+.img-container {
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    width: 55vw;
+    height: 60vh;
+    position: relative; /* Konumlandırma için relative */
+    display: flex;
+    overflow-x: hidden; /* Yatay kaydırma gizli */
+    padding: 15px;
+    border: 3px solid #01b291;
+    border-radius: 15px;
+    background-color: black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.img-container img {
+    position: absolute; /* Resimleri üst üste yerleştirmek için absolute */
+    width: calc(27% - 12px); /* Resim boyutu */
+    transition: transform 0.8s ease, filter 0.8s ease, left 0.8s ease; 
+}
+
+.img-container img:nth-child(1) { left: 5%; }
+.img-container img:nth-child(2) { left: 10%; }
+.img-container img:nth-child(3) { left: 15%; }
+.img-container img:nth-child(4) { left: 20%; }
+.img-container img:nth-child(5) { left: 25%; }
+.img-container img:nth-child(6) { left: 30%; }
+.img-container img:nth-child(7) { left: 35%; }
+.img-container img:nth-child(8) { left: 40%; }
+.img-container img:nth-child(9) { left: 45%; }
+.img-container img:nth-child(10) { left: 50%; }
+
+
+/* Resim Hover Efekti */
+.img-container img:hover {
+    transform: scale(1.05); 
+    filter: brightness(1.1); 
+}
+
+/* Resimlerin üzerine gelindiğinde ayrılmasını sağla */
+.img-container img:hover ~ img {
+    left: 100%; /* Diğer resimleri sağa kaydır */
+}
+
+.img-container:hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media Queries - Responsive düzenlemeler */
+
+/* Tablet ve daha küçük ekranlar için */
+@media (max-width: 768px) {
+    .img-container {
+        width: 90vw; /* Konteynerin genişliğini biraz küçült */
+    }
+
+    .img-container img {
+        width: 48%; /* Resimler %48 genişlikte olacak (iki yan yana) */
+    }
+}
+
+/* Telefonlar için */
+@media (max-width: 480px) {
+    .img-container {
+        width: 95vw; /* Genişlik daha da küçülür */
+    }
+
+    .img-container img {
+        width: 100%; /* Resimler ekran genişliğine göre %100 olacak */
+    }
+}
