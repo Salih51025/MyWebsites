@@ -72,9 +72,16 @@ span {
     transform: scale(1.1); /* Hover efekti */
 }
 
+.social-icons {
+    display: flex;
+    flex-wrap: wrap; /* İkonlar yerleşiminde satıra geçmelerini sağlar */
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+}
+
 /* Sosyal ikonlar */
 .social-icons a {
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 4rem;
@@ -82,11 +89,9 @@ span {
     border: 0.2rem solid #01b291; 
     font-size: 2rem; /* İkon boyutu */
     border-radius: 50%; 
-    margin: 2rem 1.5rem; 
+    margin: 1rem; /* Aradaki boşluğu ayarladık */
     transition: 0.3s ease; /* Geçiş efekti */
     color: #01b291;
-    margin-top: 4rem;
-    margin-bottom: 5rem;
 }
 
 .social-icons a:hover {
@@ -109,6 +114,9 @@ span {
     border: 2px solid #01b291; 
     transition: 0.3s ease; /* Geçiş efekti */
     cursor: pointer; /* Fare simgesi */
+    display: inline-block; /* Butonun genişliğini kontrol etmek için */
+    white-space: nowrap; /* Yazının tek satırda kalmasını sağlar */
+    text-align: center; /* Yazıyı ortalar */
 }
 
 .btn:hover {
@@ -177,6 +185,20 @@ p {
     .home {
         gap: 4rem; /* Boşluk ayarı */
     }
+
+    /* Butonun düzeni için ayar */
+    .btn {
+        width: auto; /* Butonun genişliğini otomatik yapıyoruz */
+        padding: 1rem 3rem; /* İçerik boşluğunun biraz artırılması */
+    }
+
+     /* Sosyal ikonlar için ayarlamalar */
+     .social-icons {
+        justify-content: center;
+    }
+    .social-icons a {
+        margin: 1rem; /* Sosyal ikonlar arasındaki boşluk */
+    }
 }
 
 @media (max-width: 995px) {
@@ -196,6 +218,13 @@ p {
     .home-img img {
         width: 70vw; /* Genişlik ayarı */
         margin-top: 4rem; /* Üstten boşluk */
+    }
+
+     /* Butonun düzeni için ayar */
+    .btn {
+        margin-top: 3rem; /* Üstten boşluk */
+        width: auto;
+        padding: 1rem 3rem; /* İçerik genişliğini arttırdık */
     }
 }
 
