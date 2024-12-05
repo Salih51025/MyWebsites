@@ -33,20 +33,27 @@ body {
 
 /* Geri Dönüş Butonu */
 .back-btn {
-    margin-top: 20px;
-    width: 200px;
-    height: 30px;
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    color: var(--text-color);
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 3rem; /* Üstten boşluk */
+    padding: 1rem 2.8rem; /* İçerik boşluğu */
+    background-color: black;
+    border-radius: 4rem; 
+    font-size: 1.6rem; 
+    color: #01b291;
+    letter-spacing: 0.3rem; /* Harf aralığı */
+    font-weight: 600;
+    border: 2px solid #01b291; 
+    transition: 0.3s ease; /* Geçiş efekti */
+    cursor: pointer; /* Fare simgesi */
+    display: inline-block; /* Butonun genişliğini kontrol etmek için */
+    white-space: nowrap; /* Yazının tek satırda kalmasını sağlar */
+    text-align: center; /* Yazıyı ortalar */
 }
 
 .back-btn:hover {
-    background-color: var(--secondary-color);
+    transform: scale(1.1); /* Hover efekti */
+    background-color: #01b291; 
+    color: black; 
+    box-shadow: 0 0 25px #01b291;    
 }
 
 /* Ana Konteyner */

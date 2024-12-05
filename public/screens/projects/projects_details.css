@@ -33,7 +33,7 @@ body{
 
 .img-container img {
     position: absolute; /* Resimleri üst üste yerleştirmek için absolute */
-    width: calc(27% - 12px); /* Resim boyutu */
+    width: calc(26% - 12px); /* Resim boyutu */
     transition: transform 0.8s ease, filter 0.8s ease, left 0.8s ease; 
 }
 
