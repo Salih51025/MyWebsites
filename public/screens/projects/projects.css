@@ -33,8 +33,8 @@ body {
 
 /* Geri Dönüş Butonu */
 .back-btn {
-    margin-top: 3rem; /* Üstten boşluk */
-    padding: 1rem 2.8rem; /* İçerik boşluğu */
+    margin-top: 3rem; 
+    padding: 1rem 2.8rem; 
     background-color: black;
     border-radius: 4rem; 
     font-size: 1.6rem; 
@@ -46,7 +46,7 @@ body {
     cursor: pointer; /* Fare simgesi */
     display: inline-block; /* Butonun genişliğini kontrol etmek için */
     white-space: nowrap; /* Yazının tek satırda kalmasını sağlar */
-    text-align: center; /* Yazıyı ortalar */
+    text-align: center; 
 }
 
 .back-btn:hover {
@@ -59,7 +59,7 @@ body {
 /* Ana Konteyner */
 .container {  
     margin: 20px;
-    text-align: center; /* Metni ortala */  
+    text-align: center;
     display: flex; /* Flexbox özelliğini etkinleştir */
     justify-content: center; /* Öğeleri aralarında boşluk bırakacak şekilde yerleştir */
     align-items: center; /* Dikey ortalama */
@@ -76,7 +76,7 @@ body {
 }
 
 .project-container img {
-    transition: transform 0.8s ease, box-shadow 0.8s ease; /* Geçiş süresini artırdık */
+    transition: transform 0.8s ease, box-shadow 0.8s ease; /* Geçiş süresini artirir */
     transform-style: preserve-3d;
     box-shadow: var(--box-shadow);
     margin-left: 100px;
@@ -103,7 +103,7 @@ h1{
     margin-left: 20px;
     width: auto;
     height: auto;
-    font-size: 12px;
+    font-size: 14px;
     background-color: var(--background-color);
     color: var(--text-color);
     border: 1.5px solid var(--primary-color);
@@ -124,7 +124,7 @@ h1{
     }
 
     .project-container img {
-        width: 90%; /* Resmin genişliği, kapsayıcı elementin genişliğine göre %100 olacak */
+        width: 70%; /* Resmin genişliği, kapsayıcı elementin genişliğine göre %100 olacak */
         height: auto; /* Yükseklik, genişlik ile orantılı olacak */
         object-fit: contain; /* Resmin orantıları korunarak kapsayıcı alana sığdırılacak */
         max-width: 100%; /* Resim, ekran boyutuna göre genişleyebilir ancak taşmaz */
@@ -147,7 +147,7 @@ h1{
     }
 
     .project-container {
-        max-width: 100%;
+        max-width: 90%;
     }
 
     .project-details {

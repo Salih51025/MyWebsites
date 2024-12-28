@@ -131,7 +131,7 @@ header {
         align-items: center;
         position: fixed; /* Sabit konum */
         width: 50%;
-        height: 25vh;
+        height: 35vh;
         top: 0; 
         right: -100%; /* Dışarıda başlangıç */
         z-index: 100; /* Katman sırası */

@@ -34,19 +34,19 @@ body{
 .img-container img {
     position: absolute; /* Resimleri üst üste yerleştirmek için absolute */
     width: calc(26% - 12px); /* Resim boyutu */
-    transition: transform 0.8s ease, filter 0.8s ease, left 0.8s ease; 
+    transition: transform 1s ease, filter 1s ease, left 1s ease; 
 }
 
 .img-container img:nth-child(1) { left: 5%; }
-.img-container img:nth-child(2) { left: 10%; }
-.img-container img:nth-child(3) { left: 15%; }
-.img-container img:nth-child(4) { left: 20%; }
-.img-container img:nth-child(5) { left: 25%; }
-.img-container img:nth-child(6) { left: 30%; }
-.img-container img:nth-child(7) { left: 35%; }
-.img-container img:nth-child(8) { left: 40%; }
-.img-container img:nth-child(9) { left: 45%; }
-.img-container img:nth-child(10) { left: 50%; }
+.img-container img:nth-child(2) { left: 12%; }
+.img-container img:nth-child(3) { left: 16%; }
+.img-container img:nth-child(4) { left: 22%; }
+.img-container img:nth-child(5) { left: 27%; }
+.img-container img:nth-child(6) { left: 33%; }
+.img-container img:nth-child(7) { left: 37%; }
+.img-container img:nth-child(8) { left: 42%; }
+.img-container img:nth-child(9) { left: 47%; }
+.img-container img:nth-child(10) { left: 53%; }
 
 
 /* Resim Hover Efekti */
@@ -64,8 +64,6 @@ body{
     opacity: 1;
     transform: translateY(0);
 }
-
-/* Media Queries: Mobil ve Tablet Uyumluluğu */
 
 /* Mobil Cihazlar (max-width: 767px) */
 @media (max-width: 767px) {
