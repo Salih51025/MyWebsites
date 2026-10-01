@@ -7,18 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="script.js"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<link rel="stylesheet" href="../navbar/nav.css">
+
+
 </head>
 <body>
-  <header> 
-    <div id="nav-placeholder"></div>
-    <script>
-        fetch('../navbar/nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
-    </script>
-  </header>
+<div id="nav-placeholder"></div>
+
+
+
   <div class="contact-container">
     <div id="contact">
         <h2>Contact</h2>
@@ -27,8 +24,50 @@
             <input type="email" id="email_id" placeholder="Email" required /><br />
             <textarea id="message" placeholder="Message" required></textarea><br />
             <button type="submit">Send</button>
-        </form>            
-    </div>  
+        </form>
+    </div>
   </div>
+
+<script src="../navbar/nav.js"></script>
+
+<script>
+
+fetch("../navbar/nav.html")
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Navbar yüklenemedi.");
+        }
+
+        return response.text();
+
+    })
+    .then(html => {
+
+        const placeholder =
+            document.getElementById("nav-placeholder");
+
+        if (!placeholder) {
+            throw new Error(
+                "nav-placeholder bulunamadı."
+            );
+        }
+
+        placeholder.innerHTML = html;
+
+        initNavbar();
+
+    })
+    .catch(error => {
+
+        console.error(
+            "Navbar error:",
+            error
+        );
+
+    });
+
+</script>
+
 </body>
-</html> 
+</html>

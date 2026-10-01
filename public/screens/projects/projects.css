@@ -1,29 +1,1117 @@
-*{
-    margin: 0;
-    padding: 0;
+/* =========================================================
+PROJECTS PAGE
+Minimal / Futuristic Portfolio
+========================================================= */
+
+html {
+margin: 0;
+padding: 0;
+
+background: #000;
+
+
+}
+
+body {
+margin: 0;
+padding: 0;
+
+min-height: 100vh;
+
+background: #000;
+
+color: #fff;
+
+font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+overflow-x: hidden;
+
+
+}
+
+/* =========================================================
+MAIN
+========================================================= */
+
+main {
+width: 100%;
+
+padding-top: 130px;
+padding-bottom: 80px;
+
+
+}
+
+/* =========================================================
+PROJECTS CONTAINER
+========================================================= */
+
+#projects {
+width: 100%;
+max-width: 1450px;
+
+margin: 0 auto;
+
+padding:
+    0 40px;
+
+
+}
+
+/* =========================================================
+PROJECT CARD
+========================================================= */
+
+.project-card {
+position: relative;
+
+width: 100%;
+
+margin: 0 auto 70px;
+
+padding: 28px;
+
+background:
+    linear-gradient(
+        145deg,
+        rgba(1, 178, 145, 0.035),
+        rgba(0, 0, 0, 0.95)
+    );
+
+border:
+    1px solid
+    rgba(1, 178, 145, 0.12);
+
+border-radius: 18px;
+
+box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35);
+
+overflow: hidden;
+
+opacity: 0;
+
+transform:
+    translateY(25px);
+
+animation:
+    projectReveal
+    0.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+
+
+}
+
+/* =========================================================
+PROJECT CARD HOVER
+========================================================= */
+
+.project-card:hover {
+
+border-color:
+    rgba(1, 178, 145, 0.25);
+
+box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(1, 178, 145, 0.035);
+
+transform:
+    translateY(-3px);
+
+
+}
+
+/* =========================================================
+PROJECT REVEAL
+========================================================= */
+
+@keyframes projectReveal {
+
+from {
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+}
+
+to {
+    opacity: 1;
+
+    transform:
+        translateY(0);
 }
 
 
-/* Project */
-.project {
-    margin-left: 20px;
-    margin-top: 100px;
-    display: flex;
-    flex-wrap: wrap; /* Resimleri yan yana koyar ve taşan resimler bir sonraki satıra geçer */
+}
+
+/* =========================================================
+PROJECT GALLERY
+========================================================= */
+
+.project-gallery {
+
+width: 100%;
+
+display: grid;
+
+grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+gap: 14px;
+
+margin-bottom: 30px;
+
+
+}
+
+/* =========================================================
+IMAGE CONTAINER
+========================================================= */
+
+.project-image {
+
+position: relative;
+
+width: 100%;
+
+aspect-ratio: 16 / 10;
+
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+overflow: hidden;
+
+background:
+    #050505;
+
+border:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+border-radius: 10px;
+
+transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+
+
+}
+
+/* =========================================================
+IMAGE
+========================================================= */
+
+.project-image img {
+
+display: block;
+
+width: 100%;
+height: 100%;
+
+object-fit: contain;
+
+object-position: center;
+
+padding: 6px;
+
+transition:
+    transform 0.45s
+    cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+
+
+}
+
+/* =========================================================
+IMAGE HOVER
+========================================================= */
+
+.project-image:hover {
+
+border-color:
+    rgba(1, 178, 145, 0.25);
+
+background:
+    #080808;
+
+
+}
+
+.project-image:hover img {
+
+transform:
+    scale(1.025);
+
+filter:
+    brightness(1.06);
+
+
+}
+
+/* =========================================================
+PROJECT CONTENT
+========================================================= */
+
+.project-content {
+
+position: relative;
+
+width: 100%;
+
+padding:
+    10px 8px 4px;
+
+
+}
+
+/* =========================================================
+PROJECT NUMBER
+========================================================= */
+
+.project-number {
+
+display: block;
+
+margin-bottom: 7px;
+
+color:
+    rgba(1, 178, 145, 0.55);
+
+font-size: 1.1rem;
+
+font-weight: 600;
+
+letter-spacing: 0.18rem;
+
+
+}
+
+/* =========================================================
+PROJECT TITLE
+========================================================= */
+
+.project-content h2 {
+
+margin: 0 0 16px;
+
+color:
+    #01b291;
+
+font-size:
+    clamp(2rem, 2.4vw, 2.8rem);
+
+font-weight: 600;
+
+line-height: 1.2;
+
+letter-spacing: 0.04rem;
+
+
+}
+
+/* =========================================================
+PROJECT DESCRIPTION
+========================================================= */
+
+.project-content p {
+
+width: 100%;
+
+margin: 0;
+
+color:
+    rgba(255, 255, 255, 0.68);
+
+font-size:
+    clamp(1.35rem, 1.1vw, 1.55rem);
+
+font-weight: 400;
+
+line-height: 1.8;
+
+letter-spacing: 0.015rem;
+
+text-align: left;
+
+
+}
+
+/* =========================================================
+SUBTLE CARD LINE
+========================================================= */
+
+.project-card::before {
+
+content: "";
+
+position: absolute;
+
+top: 0;
+left: 28px;
+
+width: 70px;
+height: 1px;
+
+background:
+    #01b291;
+
+opacity: 0.6;
+
+box-shadow:
+    0 0 10px
+    rgba(1, 178, 145, 0.25);
+
+
+}
+
+/* =========================================================
+TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+main {
+    padding-top: 110px;
+    padding-bottom: 60px;
+}
+
+
+#projects {
+
+    padding:
+        0 25px;
+}
+
+
+.project-card {
+
+    padding: 22px;
+
+    margin-bottom: 50px;
+
+    border-radius: 15px;
+}
+
+
+.project-gallery {
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+
+.project-card::before {
+
+    left: 22px;
+}
+
+
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+main {
+
+    padding-top: 95px;
+    padding-bottom: 45px;
+}
+
+
+#projects {
+
+    padding:
+        0 14px;
+}
+
+
+.project-card {
+
+    padding: 16px;
+
+    margin-bottom: 35px;
+
+    border-radius: 13px;
+}
+
+
+.project-card::before {
+
+    left: 16px;
+
+    width: 50px;
+}
+
+
+/* -----------------------------------------------------
+   MOBILE GALLERY
+   ----------------------------------------------------- */
+
+.project-gallery {
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+
     margin-bottom: 20px;
-    align-items: center;
-}
-
-.project img {
-    max-width: 30%; /* Resimler arasındaki boşluk için %100 yerine %48 kullandık */
-    height: auto;
-    margin: 1%;
 }
 
 
-.project h3, .project p {
+.project-image {
+
+    aspect-ratio: 4 / 3;
+
+    border-radius: 8px;
+}
+
+
+.project-image img {
+
+    padding: 4px;
+}
+
+
+/* -----------------------------------------------------
+   MOBILE CONTENT
+   ----------------------------------------------------- */
+
+.project-content {
+
+    padding:
+        6px 3px 2px;
+}
+
+
+.project-number {
+
+    margin-bottom: 5px;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 0.14rem;
+}
+
+
+.project-content h2 {
+
+    margin-bottom: 12px;
+
+    font-size: 2rem;
+}
+
+
+.project-content p {
+
+    font-size: 1.3rem;
+
+    line-height: 1.7;
+}
+
+
+}
+
+/* =========================================================
+VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+#projects {
+
+    padding:
+        0 10px;
+}
+
+
+.project-card {
+
+    padding: 13px;
+}
+
+
+.project-gallery {
+
+    gap: 7px;
+}
+
+
+.project-image {
+
+    border-radius: 7px;
+}
+
+
+.project-content h2 {
+
+    font-size: 1.8rem;
+}
+
+
+.project-content p {
+
+    font-size: 1.25rem;
+}
+
+
+}
+
+/* =========================================================
+REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+.project-card {
+
+    animation: none;
+
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+}
+
+
+.project-card:hover {
+
+    transform: none;
+}
+
+
+.project-image,
+.project-image img {
+
+    transition: none;
+}
+
+
+}
+/* =========================================================
+   IMAGE LIGHTBOX
+   ========================================================= */
+
+.image-lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
     width: 100%;
-    text-align: left;
-    text-align: start;
-    font-size: 1.5rem;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    background:
+        rgba(0, 0, 0, 0.94);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* =========================================================
+   LIGHTBOX ACTIVE
+   ========================================================= */
+
+.image-lightbox.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX CONTENT
+   ========================================================= */
+
+.lightbox-content {
+
+    position: relative;
+
+    width: min(
+        90vw,
+        1500px
+    );
+
+    height: min(
+        88vh,
+        900px
+    );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX IMAGE
+   ========================================================= */
+
+.lightbox-content img {
+
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 80px
+        rgba(0, 0, 0, 0.75),
+
+        0 0 35px
+        rgba(1, 178, 145, 0.08);
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    animation:
+        lightboxImageIn
+        0.25s ease;
+}
+
+
+/* =========================================================
+   IMAGE ANIMATION
+   ========================================================= */
+
+@keyframes lightboxImageIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    color: #fff;
+
+    border:
+        1px solid
+        rgba(1, 178, 145, 0.3);
+
+    border-radius: 50%;
+
+    font-size: 3rem;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10002;
+
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.lightbox-close:hover {
+
+    color: #01b291;
+
+    background:
+        rgba(1, 178, 145, 0.08);
+
+    border-color:
+        rgba(1, 178, 145, 0.7);
+
+    transform:
+        rotate(90deg);
+
+}
+
+
+/* =========================================================
+   ARROWS
+   ========================================================= */
+
+.lightbox-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+
+    transform:
+        translateY(-50%);
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    color: #fff;
+
+    border:
+        1px solid
+        rgba(1, 178, 145, 0.25);
+
+    border-radius: 50%;
+
+    font-size: 2.5rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10001;
+
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.lightbox-prev {
+
+    left: 30px;
+
+}
+
+
+.lightbox-next {
+
+    right: 30px;
+
+}
+
+
+.lightbox-arrow:hover {
+
+    color: #01b291;
+
+    background:
+        rgba(1, 178, 145, 0.08);
+
+    border-color:
+        rgba(1, 178, 145, 0.7);
+
+}
+
+
+.lightbox-prev:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(-3px);
+
+}
+
+
+.lightbox-next:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(3px);
+
+}
+
+
+/* =========================================================
+   COUNTER
+   ========================================================= */
+
+.lightbox-counter {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -42px;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        7px 14px;
+
+    background:
+        rgba(0, 0, 0, 0.7);
+
+    border:
+        1px solid
+        rgba(1, 178, 145, 0.18);
+
+    border-radius: 20px;
+
+    color:
+        rgba(255, 255, 255, 0.8);
+
+    font-size: 1.3rem;
+
+    letter-spacing: 0.1rem;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================================
+   PROJECT IMAGE CLICK
+   ========================================================= */
+
+.project-image {
+
+    cursor: zoom-in;
+
+}
+
+
+.project-image img {
+
+    cursor: zoom-in;
+
+}
+
+
+/* =========================================================
+   MOBILE LIGHTBOX
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .image-lightbox {
+
+        padding:
+            20px;
+
+    }
+
+
+    .lightbox-content {
+
+        width: 100%;
+
+        height: 82vh;
+
+    }
+
+
+    .lightbox-content img {
+
+        max-width: 100%;
+
+        max-height: 100%;
+
+        border-radius: 7px;
+
+    }
+
+
+    .lightbox-close {
+
+        top: 15px;
+
+        right: 15px;
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 2.6rem;
+
+    }
+
+
+    .lightbox-arrow {
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 2rem;
+
+    }
+
+
+    .lightbox-prev {
+
+        left: 10px;
+
+    }
+
+
+    .lightbox-next {
+
+        right: 10px;
+
+    }
+
+
+    .lightbox-counter {
+
+        bottom: -35px;
+
+        font-size: 1.2rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .lightbox-content {
+
+        height: 75vh;
+
+    }
+
+
+    .lightbox-arrow {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 1.8rem;
+
+    }
+
+
+    .lightbox-prev {
+
+        left: 5px;
+
+    }
+
+
+    .lightbox-next {
+
+        right: 5px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .image-lightbox,
+    .lightbox-content img,
+    .lightbox-close,
+    .lightbox-arrow {
+
+        transition: none;
+
+        animation: none;
+
+    }
+
 }

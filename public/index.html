@@ -5,30 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="index.css">
-    <script>
-       // Sayfada herhangi bir yere tıklanıldığında, fade-out ve scale-out animasyonu başlatılır
-       document.addEventListener("click", function() {
-            document.body.classList.add("fade-out");
-            setTimeout(function() {
-                window.location.href = "screens/home/home.html";
-            }, 100); // Animasyonun bitmesini bekleyin
-        });
-    </script>   
+   <script>
+    let isLeaving = false;
+
+    function goToHome() {
+
+        // Eğer yönlendirme zaten başladıysa tekrar çalıştırma
+        if (isLeaving) return;
+
+        isLeaving = true;
+
+        // Çıkış animasyonunu başlat
+        document.body.classList.add("fade-out");
+
+        // Animasyon tamamlandıktan sonra home sayfasına git
+        setTimeout(function () {
+            window.location.href = "screens/home/home.html";
+        }, 550);
+    }
+
+
+    // Kullanıcı herhangi bir yere tıklarsa
+    document.addEventListener("click", goToHome, { once: true });
+
+
+    // Kullanıcı hiçbir yere basmazsa 7 saniye sonra otomatik geç
+    setTimeout(function () {
+        goToHome();
+    }, 8000);
+</script>
 </head>
 <body>
     <div class="hero">
-        <div class="content">
-            <h1>Welcome</h1>
-        </div>
-        <div class="bubbles">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-            <img src="images/bubble.png">
-        </div>
+    <div class="content">
+        <h1>WELCOME</h1>
+        <p>TO MY WEBSITE</p>
+    </div>
+<div class="enter-hint">
+    <span>Click to enter</span>
+</div>
+    <div class="bubbles" aria-hidden="true">
+        <img src="images/bubble.png" alt="">
+        <img src="images/bubble.png" alt="">
+        <img src="images/bubble.png" alt="">
+        <img src="images/bubble.png" alt="">
+        <img src="images/bubble.png" alt="">
+        <img src="images/bubble.png" alt="">
+        <img src="images/bubble.png" alt="">
+    </div>
     </div>
 </body>
 </html>

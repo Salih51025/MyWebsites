@@ -1,111 +1,588 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
+/* =========================================================
+NAVBAR
+Minimal Futuristic Portfolio
+========================================================= */
+
+/* =========================================================
+RESET
+========================================================= */
+
+.nav-container,
+.nav-container * {
+box-sizing: border-box;
 }
 
-html{
-    font-size: 62.5%;
-}
-
-body{
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    background-color: black;
-    color: white;
-}
-
-header{
-    margin-top: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem 9%;
-    background-color: transparent;
-    filter: drop-shadow(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-}
-
-
-.logo{
-    font-size: 3rem;
-    color: #01b291;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.5s ease;
-    padding: 10px;
-}
-
-.logo:hover{
-    transform: scale(1.1);
-}
-
+/* =========================================================
+NAVBAR CONTAINER
+========================================================= */
 
 .nav-container {
+
+position: fixed;
+
+top: 20px;
+left: 50%;
+
+transform: translateX(-50%);
+
+width: calc(100% - 80px);
+max-width: 1250px;
+
+min-height: 68px;
+
+padding: 0.7rem 2.2rem;
+
+display: flex;
+
+align-items: center;
+justify-content: space-between;
+
+background: rgba(0, 0, 0, 0.82);
+
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+
+border: 1px solid rgba(1, 178, 145, 0.14);
+
+border-radius: 14px;
+
+box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(1, 178, 145, 0.025);
+
+z-index: 1000;
+
+
+}
+
+/* =========================================================
+LOGO
+========================================================= */
+
+.nav-container .logo {
+
+display: block;
+
+color: #01b291;
+
+font-family: Arial, Helvetica, sans-serif;
+
+font-size: 2.8rem;
+
+font-weight: 700;
+
+letter-spacing: 0.5px;
+
+text-decoration: none;
+
+padding: 0.5rem 0.8rem;
+
+cursor: pointer;
+
+transition:
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+
+
+}
+
+.nav-container .logo:hover {
+
+transform: scale(1.04);
+
+text-shadow:
+    0 0 8px rgba(1, 178, 145, 0.25),
+    0 0 18px rgba(1, 178, 145, 0.08);
+
+
+}
+
+/* =========================================================
+DESKTOP NAV
+========================================================= */
+
+.nav-container nav {
+
+display: flex;
+
+align-items: center;
+
+gap: 3.2rem;
+
+
+}
+
+.nav-container nav a {
+
+position: relative;
+
+display: block;
+
+color: rgba(255, 255, 255, 0.72);
+
+font-family: Arial, Helvetica, sans-serif;
+
+font-size: 1.55rem;
+
+font-weight: 500;
+
+letter-spacing: 0.3px;
+
+text-decoration: none;
+
+padding: 0.8rem 0;
+
+white-space: nowrap;
+
+transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+
+
+}
+
+/* =========================================================
+LINK ALT ÇİZGİSİ
+========================================================= */
+
+.nav-container nav a::after {
+
+content: "";
+
+position: absolute;
+
+left: 50%;
+bottom: 0;
+
+width: 0;
+height: 1px;
+
+background: #01b291;
+
+transform: translateX(-50%);
+
+box-shadow:
+    0 0 7px rgba(1, 178, 145, 0.3);
+
+transition:
+    width 0.3s ease;
+
+
+}
+
+/* =========================================================
+AKTİF SAYFA
+========================================================= */
+
+.nav-container nav a.active {
+
+color: #01b291;
+
+text-shadow:
+    0 0 8px rgba(1, 178, 145, 0.15);
+
+
+}
+
+.nav-container nav a.active::after {
+
+width: 100%;
+
+
+}
+
+/* =========================================================
+HOVER
+========================================================= */
+
+.nav-container nav a:hover {
+
+color: #01b291;
+
+text-shadow:
+    0 0 8px rgba(1, 178, 145, 0.12);
+
+
+}
+
+.nav-container nav a:hover::after {
+
+width: 100%;
+
+
+}
+
+/* =========================================================
+HAMBURGER
+========================================================= */
+
+.nav-container .menu-toggle {
+
+display: none;
+
+width: 42px;
+height: 42px;
+
+padding: 0;
+
+margin: 0;
+
+background: transparent;
+
+border: none;
+
+cursor: pointer;
+
+flex-direction: column;
+
+justify-content: center;
+align-items: center;
+
+gap: 5px;
+
+z-index: 1100;
+
+
+}
+
+.nav-container .menu-toggle span {
+
+display: block;
+
+width: 23px;
+height: 1.5px;
+
+background: #01b291;
+
+border-radius: 10px;
+
+box-shadow:
+    0 0 6px rgba(1, 178, 145, 0.2);
+
+transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+
+}
+
+/* =========================================================
+HAMBURGER → X
+========================================================= */
+
+.nav-container .menu-toggle.active span:nth-child(1) {
+
+transform:
+    translateY(6.5px)
+    rotate(45deg);
+
+
+}
+
+.nav-container .menu-toggle.active span:nth-child(2) {
+
+opacity: 0;
+
+
+}
+
+.nav-container .menu-toggle.active span:nth-child(3) {
+
+transform:
+    translateY(-6.5px)
+    rotate(-45deg);
+
+
+}
+
+/* =========================================================
+TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 995px) {
+
+.nav-container {
+
+    top: 15px;
+
+    width: calc(100% - 40px);
+
+    min-height: 62px;
+
+    padding:
+        0.6rem
+        1.5rem;
+
+    border-radius: 12px;
+}
+
+
+.nav-container .logo {
+
+    font-size: 2.5rem;
+}
+
+
+/* Hamburger */
+
+.nav-container .menu-toggle {
+
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+
+/* Mobile navigation */
+
+.nav-container nav {
+
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0;
+
+    padding: 1rem;
+
+    background:
+        rgba(5, 5, 5, 0.98);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border:
+        1px solid
+        rgba(1, 178, 145, 0.18);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(1, 178, 145, 0.04);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        translateY(-10px);
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
+
+    z-index: 1050;
+}
+
+
+/* Menu open */
+
+.nav-container nav.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0);
+}
+
+
+/* Mobile links */
+
+.nav-container nav a {
+
     width: 100%;
-    height: 8vh;
-    background-color: #000000; /* Siyah arka plan rengi */
-    border-radius: 1rem;
+
+    padding:
+        1.4rem 1rem;
+
+    color:
+        rgba(255, 255, 255, 0.85);
+
+    font-size: 1.5rem;
+
+    border-radius: 7px;
+
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease;
 }
 
-nav a{
-    font-size: 1.8rem;
-    color: white;
-    margin-left: 4rem;
-    margin-right: 1rem;
-    font-weight: 500;
-    transition: 0.3s ease;
-    border-bottom: 3px solid transparent;
+
+.nav-container nav a::after {
+
+    left: 1rem;
+
+    bottom: 6px;
+
+    width: 0;
+
+    height: 1px;
+
+    transform: none;
+
+    transition:
+        width 0.25s ease;
 }
 
-nav a:hover,
-nav a.active{
+
+/* Active */
+
+.nav-container nav a.active {
+
     color: #01b291;
-    border-bottom: 3px solid #01b291;
+
+    background:
+        rgba(1, 178, 145, 0.035);
+
+    text-shadow:
+        0 0 8px rgba(1, 178, 145, 0.12);
 }
 
 
-@media(max-width:995px){
-    nav{
-        position: absolute;
-        display: none;
-        top: 0;
-        right: 0;
-        width: 40%;
-        border-left: 3px solid #01b291;
-        border-bottom: 3px solid #01b291;
-        border-bottom-left-radius: 2rem;
-        padding: 1rem solid;
-        background-color: #161616;
-        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
-    }
+.nav-container nav a.active::after {
 
-    nav.active{
-    display: block;
-    }
+    width: 35px;
+}
 
-    nav a{
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-    }
 
-    nav a:hover,
-    nav a.active{
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border-bottom: 0.5rem solid #01b291;
-    }
+/* Hover */
+
+.nav-container nav a:hover {
+
+    color: #01b291;
+
+    background:
+        rgba(1, 178, 145, 0.035);
+}
+
+
+.nav-container nav a:hover::after {
+
+    width: 35px;
+}
+
+
+}
+
+/* =========================================================
+SMALL PHONE
+========================================================= */
+
+@media (max-width: 600px) {
+
+.nav-container {
+
+    top: 12px;
+
+    width: calc(100% - 24px);
+
+    min-height: 58px;
+
+    padding:
+        0.5rem 1.2rem;
+
+    border-radius: 10px;
+}
+
+
+.nav-container .logo {
+
+    font-size: 2.2rem;
+
+    padding:
+        0.4rem 0.5rem;
+}
+
+
+.nav-container .menu-toggle {
+
+    width: 40px;
+    height: 40px;
+}
+
+
+.nav-container nav {
+
+    width: 200px;
+}
+
+
+.nav-container nav a {
+
+    font-size: 1.4rem;
+
+    padding:
+        1.3rem 1rem;
+}
+
+
+}
+
+/* =========================================================
+VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 400px) {
+
+.nav-container {
+
+    width: calc(100% - 20px);
+
+    padding:
+        0.5rem 1rem;
+}
+
+
+.nav-container .logo {
+
+    font-size: 2rem;
+}
+
+
+.nav-container nav {
+
+    width: 185px;
+}
+
+
+.nav-container nav a {
+
+    font-size: 1.3rem;
+}
+
+
+}
+
+/* =========================================================
+REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+.nav-container,
+.nav-container nav,
+.nav-container nav a,
+.nav-container nav a::after,
+.nav-container .logo,
+.nav-container .menu-toggle span {
+
+    transition: none;
+}
+
+
 }

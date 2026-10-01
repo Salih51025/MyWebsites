@@ -1,91 +1,977 @@
-
 * {
-    padding: 0;
     margin: 0;
-    font-family: sans-serif;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.hero{
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   ANA EKRAN
+   ========================================================= */
+
+.hero {
+    position: relative;
+
     width: 100%;
     height: 100vh;
-background-image: url('images/gokyuzu.jpg'); 
-    background-size: cover;
-    background-position: center;
-    position: relative;
+    height: 100dvh;
+
+    background: #000;
+
     overflow: hidden;
-}
 
-.content{
-    color: #01b291;
-    position: absolute;
-    top: 50%;
-    left: 8%;
-    transform: translateY(-50%);
-    z-index: 2;
-}
-
-h1{
-    font-size: 80px;
-    margin: 10px 0 30px;
-    line-height: 80px;
-}
-
-
-/* Bubbles */
-
-.bubbles{
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+
+    cursor: pointer;
+
+    /*
+        Ortaya çok hafif bir ışık hissi.
+        Siyah arka planı tamamen değiştirmeden
+        merkezi biraz daha canlı gösterir.
+    */
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(1, 178, 145, 0.025) 0%,
+            rgba(1, 178, 145, 0.008) 28%,
+            transparent 65%
+        ),
+        #000;
+}
+
+
+/* =========================================================
+   HAFİF VIGNETTE
+   ========================================================= */
+
+.hero::after {
+    content: "";
+
     position: absolute;
-    bottom: -70px;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    /*
+        Kenarları çok hafif karartır.
+        Böylece göz doğal olarak merkeze yönelir.
+    */
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 30%,
+            rgba(0, 0, 0, 0.18) 65%,
+            rgba(0, 0, 0, 0.48) 100%
+        );
+
+    z-index: 8;
 }
 
-.bubbles img{
-    width: 60px;
-    animation: bubble 7s linear infinite;
+
+/* =========================================================
+   YAZI ALANI
+   ========================================================= */
+
+.content {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    z-index: 10;
+
+    pointer-events: none;
 }
 
-@keyframes bubble{
-    0%{
-        transform: translateY(0); 
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.content h1 {
+    margin: 0;
+
+    color: #01b291;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size: clamp(65px, 8.5vw, 125px);
+
+    font-weight: 900;
+
+    line-height: 0.85;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transform:
+        translateY(12px)
+        scale(0.92);
+
+    filter: blur(6px);
+
+    transform-origin: center;
+
+    /*
+        Çok hafif futuristic glow.
+        Bilinçli olarak düşük tutuldu.
+    */
+    text-shadow:
+        0 0 8px rgba(1, 178, 145, 0.14),
+        0 0 25px rgba(1, 178, 145, 0.06);
+
+    animation:
+        welcomeIntro
+        1.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.1s
+        forwards;
+}
+
+
+/* =========================================================
+   TO MY WEBSITE
+   ========================================================= */
+
+.content p {
+    /*
+        WELCOME'a oldukça yakın.
+    */
+    margin: 5px 0 0 0;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size: clamp(22px, 3vw, 43px);
+
+    font-weight: 900;
+
+    line-height: 0.9;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    color: transparent;
+
+    -webkit-text-fill-color: transparent;
+
+    -webkit-text-stroke: 1.5px #01b291;
+
+    opacity: 0;
+
+    transform:
+        translateY(-8px)
+        scale(0.94);
+
+    filter: blur(5px);
+
+    transform-origin: center;
+
+    /*
+        Outline yazıya çok hafif glow.
+    */
+    text-shadow:
+        0 0 8px rgba(1, 178, 145, 0.12),
+        0 0 18px rgba(1, 178, 145, 0.04);
+
+    animation:
+        subtitleIntro
+        1.45s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.75s
+        forwards;
+}
+
+
+/* =========================================================
+   WELCOME ANİMASYONU
+   ========================================================= */
+
+@keyframes welcomeIntro {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.92);
+
+        filter: blur(6px);
+    }
+
+    45% {
+        opacity: 1;
+
+        transform:
+            translateY(-3px)
+            scale(1.015);
+
+        filter: blur(0);
+    }
+
+    70% {
+        transform:
+            translateY(1px)
+            scale(0.995);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   ALT YAZI ANİMASYONU
+   ========================================================= */
+
+@keyframes subtitleIntro {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-8px)
+            scale(0.94);
+
+        filter: blur(5px);
+    }
+
+    45% {
+        opacity: 1;
+
+        transform:
+            translateY(3px)
+            scale(1.015);
+
+        filter: blur(0);
+    }
+
+    70% {
+        transform:
+            translateY(0)
+            scale(0.997);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   BALONCUK ALANI
+   ========================================================= */
+
+.bubbles {
+    position: absolute;
+
+    left: 0;
+    bottom: -80px;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-around;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   BALONCUKLAR
+   ========================================================= */
+
+.bubbles img {
+    position: relative;
+
+    display: block;
+
+    width: 55px;
+    height: auto;
+
+    opacity: 0;
+
+    object-fit: contain;
+
+    /*
+        Baloncukları yazıyla aynı teal tona getirir.
+    */
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(52%)
+        sepia(91%)
+        saturate(1000%)
+        hue-rotate(123deg)
+        brightness(88%)
+        contrast(102%)
+        drop-shadow(
+            0 0 5px
+            rgba(1, 178, 145, 0.18)
+        );
+
+    animation-name: bubbleFloat;
+
+    animation-timing-function:
+        cubic-bezier(0.37, 0, 0.63, 1);
+
+    animation-iteration-count: infinite;
+
+    animation-fill-mode: backwards;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/* =========================================================
+   BALONCUK ANİMASYONU
+   ========================================================= */
+
+@keyframes bubbleFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.72);
+
         opacity: 0;
     }
-    50%{
-        opacity: 1;
+
+    8% {
+        opacity: 0.35;
     }
-    70%{
-        opacity: 1;
+
+    18% {
+        opacity: 0.75;
     }
-    100%{
-        transform: translateY(-80vh); 
+
+    35% {
+        opacity: 0.9;
+    }
+
+    55% {
+        opacity: 0.72;
+    }
+
+    75% {
+        opacity: 0.45;
+    }
+
+    90% {
+        opacity: 0.18;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(25px)
+            scale(1.08);
+
         opacity: 0;
     }
 }
 
-.bubbles img:nth-child(1){
-    animation-delay: 2s;
+
+/* =========================================================
+   BALONCUK BOYUTLARI
+   ========================================================= */
+
+/*
+    Önceki boyutlara göre yaklaşık %25 büyütülmüş
+    versiyonlar.
+*/
+
+
+/* Küçük - sol */
+
+.bubbles img:nth-child(1) {
+    width: 31px;
+
+    animation-duration: 7.5s;
+    animation-delay: 0.3s;
+}
+
+
+/* Büyük - sol / orta */
+
+.bubbles img:nth-child(2) {
+    width: 75px;
+
+    animation-duration: 9.5s;
+    animation-delay: 1.7s;
+}
+
+
+/* Küçük - orta */
+
+.bubbles img:nth-child(3) {
+    width: 34px;
+
+    animation-duration: 8s;
+    animation-delay: 3.2s;
+}
+
+
+/* Büyük */
+
+.bubbles img:nth-child(4) {
+    width: 65px;
+
+    animation-duration: 10s;
+    animation-delay: 0.8s;
+}
+
+
+/* Orta */
+
+.bubbles img:nth-child(5) {
+    width: 48px;
+
+    animation-duration: 8.5s;
+    animation-delay: 4s;
+}
+
+
+/* Çok küçük */
+
+.bubbles img:nth-child(6) {
     width: 25px;
+
+    animation-duration: 7s;
+    animation-delay: 2.3s;
 }
-.bubbles img:nth-child(2){
-    animation-delay: 1s;
+
+
+/* Orta */
+
+.bubbles img:nth-child(7) {
+    width: 43px;
+
+    animation-duration: 9s;
+    animation-delay: 5s;
 }
-.bubbles img:nth-child(3){
-    animation-delay: 3s;
-    width: 25px;
+
+
+/* =========================================================
+   BALONCUKLARA FARKLI YATAY HAREKET
+   ========================================================= */
+
+/*
+    Aynı dikey çizgide gitmek yerine
+    farklı yönlere hafifçe süzülürler.
+*/
+
+.bubbles img:nth-child(1) {
+    animation-name: bubbleFloatLeft;
 }
-.bubbles img:nth-child(4){
-    animation-delay: 4.5s;
+
+.bubbles img:nth-child(2) {
+    animation-name: bubbleFloatRight;
 }
-.bubbles img:nth-child(5){
-    animation-delay: 3s;
+
+.bubbles img:nth-child(3) {
+    animation-name: bubbleFloatLeftSoft;
 }
-.bubbles img:nth-child(6){
-    animation-delay: 6s;
-    width: 20px;
+
+.bubbles img:nth-child(4) {
+    animation-name: bubbleFloatRightSoft;
 }
-.bubbles img:nth-child(7){
-    animation-delay: 7s;
-    width: 35px;
+
+.bubbles img:nth-child(5) {
+    animation-name: bubbleFloatLeft;
+}
+
+.bubbles img:nth-child(6) {
+    animation-name: bubbleFloatRight;
+}
+
+.bubbles img:nth-child(7) {
+    animation-name: bubbleFloatLeftSoft;
+}
+
+
+/* =========================================================
+   BALONCUK YÖNLERİ
+   ========================================================= */
+
+@keyframes bubbleFloatLeft {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.72);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.65;
+    }
+
+    25% {
+        opacity: 0.9;
+    }
+
+    55% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(-35px)
+            scale(1.08);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes bubbleFloatRight {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.72);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.65;
+    }
+
+    25% {
+        opacity: 0.9;
+    }
+
+    55% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(40px)
+            scale(1.08);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes bubbleFloatLeftSoft {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.72);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.6;
+    }
+
+    30% {
+        opacity: 0.82;
+    }
+
+    60% {
+        opacity: 0.58;
+    }
+
+    85% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(-20px)
+            scale(1.05);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes bubbleFloatRightSoft {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.72);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.6;
+    }
+
+    30% {
+        opacity: 0.82;
+    }
+
+    60% {
+        opacity: 0.58;
+    }
+
+    85% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(25px)
+            scale(1.05);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   CLICK TO ENTER
+   ========================================================= */
+
+.enter-hint {
+    position: absolute;
+
+    left: 50%;
+    bottom: 34px;
+
+    transform: translateX(-50%);
+
+    z-index: 12;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        enterHintIntro
+        1s
+        ease
+        2.4s
+        forwards;
+}
+
+
+/* Yazı */
+
+.enter-hint span {
+    color: #01b291;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    opacity: 0.48;
+
+    white-space: nowrap;
+}
+
+
+/* Ok */
+
+.enter-hint::after {
+    content: "↓";
+
+    color: #01b291;
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    opacity: 0.5;
+
+    animation:
+        arrowFloat
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================================
+   ENTER HINT GİRİŞ
+   ========================================================= */
+
+@keyframes enterHintIntro {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ENTER OK HAREKETİ
+   ========================================================= */
+
+@keyframes arrowFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+}
+
+
+/* =========================================================
+   SAYFA ÇIKIŞ ANİMASYONU
+   ========================================================= */
+
+body.fade-out {
+    animation:
+        pageFadeOut
+        0.55s
+        cubic-bezier(0.65, 0, 0.35, 1)
+        forwards;
+}
+
+
+@keyframes pageFadeOut {
+
+    from {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            scale(0.985);
+    }
+}
+
+
+/* =========================================================
+   MOBİL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .content h1 {
+        font-size:
+            clamp(52px, 15vw, 80px);
+
+        letter-spacing: 0;
+    }
+
+
+    .content p {
+        margin-top: 3px;
+
+        font-size:
+            clamp(18px, 6vw, 30px);
+
+        letter-spacing: 0;
+
+        -webkit-text-stroke:
+            1px #01b291;
+    }
+
+
+    /* Mobil baloncuklar */
+
+    .bubbles img:nth-child(1) {
+        width: 26px;
+    }
+
+    .bubbles img:nth-child(2) {
+        width: 56px;
+    }
+
+    .bubbles img:nth-child(3) {
+        width: 29px;
+    }
+
+    .bubbles img:nth-child(4) {
+        width: 53px;
+    }
+
+    .bubbles img:nth-child(5) {
+        width: 39px;
+    }
+
+    .bubbles img:nth-child(6) {
+        width: 21px;
+    }
+
+    .bubbles img:nth-child(7) {
+        width: 35px;
+    }
+
+
+    /* Mobilde alt yazı */
+
+    .enter-hint {
+        bottom: 24px;
+    }
+
+
+    .enter-hint span {
+        font-size: 9px;
+
+        letter-spacing: 2.5px;
+    }
+
+
+    .enter-hint::after {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   HAREKET AZALTMA
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .content h1,
+    .content p {
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+
+        filter: none;
+    }
+
+
+    .bubbles img {
+        animation: none;
+
+        opacity: 0;
+    }
+
+
+    .enter-hint {
+        animation: none;
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%);
+    }
+
+
+    .enter-hint::after {
+        animation: none;
+    }
 }

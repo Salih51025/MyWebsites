@@ -7,18 +7,13 @@
     <link rel="stylesheet" href="../home/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="script.js"></script>
+<link rel="stylesheet" href="../navbar/nav.css">
+
 </head>
 <body>
-    <header>
-    <div id="nav-placeholder"></div>
-    <script>
-        fetch('../navbar/nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
-    </script>
-    </header>
+<div id="nav-placeholder"></div>
+
+
     <section class="home">
         <div class="home-img">
             <img src="../../images/mywebsiteIm.jpeg">
@@ -36,5 +31,47 @@
             <a href="../../images/SalihAydinCV.pdf" class="btn">Download My Resume</a>
             </div>
     </section>
+  <script src="../navbar/nav.js"></script>
+
+<script>
+
+fetch("../navbar/nav.html")
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Navbar yüklenemedi.");
+        }
+
+        return response.text();
+
+    })
+    .then(html => {
+
+        const placeholder =
+            document.getElementById("nav-placeholder");
+
+        if (!placeholder) {
+            throw new Error(
+                "nav-placeholder bulunamadı."
+            );
+        }
+
+        placeholder.innerHTML = html;
+
+        initNavbar();
+
+    })
+    .catch(error => {
+
+        console.error(
+            "Navbar error:",
+            error
+        );
+
+    });
+
+</script>
+
+
 </body>
 </html>
