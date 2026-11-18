@@ -80,35 +80,192 @@ span{
 }
 
 .home-img{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     margin-top: 6rem;
-    padding: 1.2rem;
+    padding: 2.2rem;
     background:
-        radial-gradient(circle, rgba(1, 178, 145, 0.12) 0%, rgba(1, 178, 145, 0.03) 55%, transparent 72%);
-    border: 1px solid rgba(1, 178, 145, 0.22);
+        radial-gradient(circle, rgba(1, 178, 145, 0.14) 0%, rgba(1, 178, 145, 0.05) 48%, rgba(0, 0, 0, 0.1) 70%, transparent 74%);
+    border: 1px solid rgba(1, 178, 145, 0.28);
     box-shadow:
-        0 0 30px rgba(1, 178, 145, 0.08),
-        inset 0 0 0 1px rgba(1, 178, 145, 0.05);
+        0 0 35px rgba(1, 178, 145, 0.1),
+        inset 0 0 0 1px rgba(1, 178, 145, 0.06),
+        inset 0 0 30px rgba(1, 178, 145, 0.05);
+    isolation: isolate;
+}
+
+.home-img::before{
+    content: "";
+    position: absolute;
+    inset: 0.9rem;
+    border-radius: 50%;
+    border: 1px dashed rgba(1, 178, 145, 0.22);
+    box-shadow: inset 0 0 18px rgba(1, 178, 145, 0.04);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .home-img img{
     position: relative;
+    z-index: 3;
     display: block;
     width: 32vw;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: 50% 20%;
     border-radius: 50%;
     box-shadow:
         0 0 25px rgba(1, 178, 145, 0.35),
-        0 0 50px rgba(1, 178, 145, 0.08);
-    border: 2px solid rgba(1, 178, 145, 0.35);
+        0 0 55px rgba(1, 178, 145, 0.1);
+    border: 2px solid rgba(1, 178, 145, 0.42);
     cursor: pointer;
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
-.home-img img:hover{
+.home-img:hover img{
     transform: scale(1.02);
     box-shadow:
-        0 0 30px rgba(1, 178, 145, 0.45),
-        0 0 60px rgba(1, 178, 145, 0.12);
+        0 0 30px rgba(1, 178, 145, 0.48),
+        0 0 70px rgba(1, 178, 145, 0.14);
+}
+
+.hud-photo-ring,
+.hud-photo-arc,
+.hud-photo-scan,
+.hud-photo-corner{
+    position: absolute;
+    pointer-events: none;
+}
+
+.hud-photo-ring{
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hud-photo-ring--outer{
+    width: calc(100% - 0.2rem);
+    height: calc(100% - 0.2rem);
+    border: 1px solid rgba(1, 178, 145, 0.22);
+    box-shadow:
+        0 0 18px rgba(1, 178, 145, 0.08),
+        inset 0 0 18px rgba(1, 178, 145, 0.03);
+    z-index: 1;
+}
+
+.hud-photo-ring--inner{
+    width: calc(100% - 2.8rem);
+    height: calc(100% - 2.8rem);
+    border-top: 1px solid rgba(1, 178, 145, 0.42);
+    border-right: 1px solid rgba(1, 178, 145, 0.12);
+    border-bottom: 1px solid rgba(1, 178, 145, 0.28);
+    border-left: 1px solid rgba(1, 178, 145, 0.12);
+    box-shadow: 0 0 14px rgba(1, 178, 145, 0.08);
+    z-index: 2;
+    animation: hudPhotoRotate 16s linear infinite;
+}
+
+.hud-photo-arc{
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.hud-photo-arc--a{
+    width: calc(100% + 1.2rem);
+    height: calc(100% + 1.2rem);
+    border: 2px solid transparent;
+    border-left-color: rgba(1, 178, 145, 0.45);
+    border-top-color: rgba(1, 178, 145, 0.18);
+    filter: drop-shadow(0 0 8px rgba(1, 178, 145, 0.18));
+    animation: hudPhotoSpin 20s linear infinite;
+}
+
+.hud-photo-arc--b{
+    width: calc(100% + 2.4rem);
+    height: calc(100% + 2.4rem);
+    border: 1.5px solid transparent;
+    border-right-color: rgba(1, 178, 145, 0.35);
+    border-bottom-color: rgba(1, 178, 145, 0.14);
+    filter: drop-shadow(0 0 8px rgba(1, 178, 145, 0.14));
+    animation: hudPhotoSpinReverse 26s linear infinite;
+}
+
+.hud-photo-scan{
+    inset: 1.1rem;
+    border-radius: 50%;
+    z-index: 4;
+    background: linear-gradient(180deg, transparent 0%, transparent 42%, rgba(1, 178, 145, 0.12) 50%, transparent 58%, transparent 100%);
+    background-size: 100% 220%;
+    background-position: 0 -120%;
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: hudPhotoScan 5.5s linear infinite;
+}
+
+.hud-photo-corner{
+    width: 2.2rem;
+    height: 2.2rem;
+    z-index: 5;
+    opacity: 0.9;
+}
+
+.hud-photo-corner--tl{
+    top: 0.3rem;
+    left: 0.3rem;
+    border-top: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-left: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-top-left-radius: 1.1rem;
+}
+
+.hud-photo-corner--tr{
+    top: 0.3rem;
+    right: 0.3rem;
+    border-top: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-right: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-top-right-radius: 1.1rem;
+}
+
+.hud-photo-corner--bl{
+    bottom: 0.3rem;
+    left: 0.3rem;
+    border-bottom: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-left: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-bottom-left-radius: 1.1rem;
+}
+
+.hud-photo-corner--br{
+    bottom: 0.3rem;
+    right: 0.3rem;
+    border-bottom: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-right: 1.5px solid rgba(1, 178, 145, 0.75);
+    border-bottom-right-radius: 1.1rem;
+}
+
+@keyframes hudPhotoRotate{
+    from{ transform: translate(-50%, -50%) rotate(0deg); }
+    to{ transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes hudPhotoSpin{
+    from{ transform: translate(-50%, -50%) rotate(0deg); }
+    to{ transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes hudPhotoSpinReverse{
+    from{ transform: translate(-50%, -50%) rotate(360deg); }
+    to{ transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes hudPhotoScan{
+    0%{ background-position: 0 -120%; }
+    100%{ background-position: 0 120%; }
 }
 
 .social-icons a{
@@ -258,11 +415,22 @@ p{
 
     .home-img{
         margin-top: 0;
+        padding: 1.8rem;
     }
 
     .home-img img{
         width: min(70vw, 32rem);
         margin-top: 0;
+    }
+
+    .hud-photo-arc--a{
+        width: calc(100% + 0.8rem);
+        height: calc(100% + 0.8rem);
+    }
+
+    .hud-photo-arc--b{
+        width: calc(100% + 1.6rem);
+        height: calc(100% + 1.6rem);
     }
 
     .home-content p{
@@ -296,11 +464,35 @@ p{
     }
 
     .home-img{
-        padding: 0.8rem;
+        padding: 1.3rem;
+    }
+
+    .home-img::before{
+        inset: 0.6rem;
     }
 
     .home-img img{
         width: min(78vw, 28rem);
+    }
+
+    .hud-photo-ring--inner{
+        width: calc(100% - 2rem);
+        height: calc(100% - 2rem);
+    }
+
+    .hud-photo-arc--a{
+        width: calc(100% + 0.5rem);
+        height: calc(100% + 0.5rem);
+    }
+
+    .hud-photo-arc--b{
+        width: calc(100% + 1rem);
+        height: calc(100% + 1rem);
+    }
+
+    .hud-photo-corner{
+        width: 1.6rem;
+        height: 1.6rem;
     }
 
     .social-icons a{
@@ -329,4 +521,17 @@ footer {
     background: #01b291;
     color: #fff;
     width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .hud-photo-ring--inner,
+    .hud-photo-arc--a,
+    .hud-photo-arc--b,
+    .hud-photo-scan{
+        animation: none !important;
+    }
+
+    .hud-photo-scan{
+        opacity: 0.18;
+    }
 }
