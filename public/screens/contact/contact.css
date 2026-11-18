@@ -50,47 +50,41 @@ CONTACT BOX
 ========================================================= */
 
 #contact {
-
-position: relative;
-
-width: 100%;
-
-max-width: 680px;
-
-padding:
-    3.2rem;
-
-background:
-    linear-gradient(180deg, rgba(1, 178, 145, 0.07) 0%, rgba(1, 178, 145, 0.02) 18%, rgba(0, 0, 0, 0.92) 100%),
-    linear-gradient(145deg, rgba(1, 178, 145, 0.04), rgba(0, 0, 0, 0.96));
-
-border:
-    1px solid
-    rgba(1, 178, 145, 0.28);
-
-border-radius: 18px;
-
-color: #01b291;
-
-box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px rgba(1, 178, 145, 0.06),
-    0 0 30px rgba(1, 178, 145, 0.06);
-
-overflow: hidden;
-
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    padding: 3.2rem;
+    background:
+        linear-gradient(#01b291, #01b291) left 14px top 14px / 18px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) left 14px top 14px / 1px 18px no-repeat,
+        linear-gradient(#01b291, #01b291) right 14px top 14px / 18px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) right 14px top 14px / 1px 18px no-repeat,
+        linear-gradient(#01b291, #01b291) left 14px bottom 14px / 18px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) left 14px bottom 14px / 1px 18px no-repeat,
+        linear-gradient(#01b291, #01b291) right 14px bottom 14px / 18px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) right 14px bottom 14px / 1px 18px no-repeat,
+        linear-gradient(180deg, rgba(1, 178, 145, 0.08) 0%, rgba(1, 178, 145, 0.02) 18%, rgba(0, 0, 0, 0.92) 100%),
+        linear-gradient(145deg, rgba(1, 178, 145, 0.04), rgba(0, 0, 0, 0.96));
+    border: 1px solid rgba(1, 178, 145, 0.3);
+    border-radius: 18px;
+    color: #01b291;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px rgba(1, 178, 145, 0.06),
+        0 0 30px rgba(1, 178, 145, 0.07);
+    overflow: hidden;
 }
 
 #contact::before {
     content: "";
     position: absolute;
     top: 0;
-    left: 28px;
-    width: 90px;
+    left: 24px;
+    right: 24px;
     height: 1px;
-    background: #01b291;
-    opacity: 0.7;
-    box-shadow: 0 0 12px rgba(1, 178, 145, 0.35);
+    background: linear-gradient(90deg, transparent, rgba(1, 178, 145, 0.55), transparent);
+    opacity: 0.8;
+    box-shadow: 0 0 12px rgba(1, 178, 145, 0.25);
 }
 
 #contact::after {
@@ -102,6 +96,30 @@ overflow: hidden;
     pointer-events: none;
 }
 
+.contact-hud-line {
+    position: absolute;
+    left: 2.2rem;
+    right: 2.2rem;
+    top: 6.2rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(1, 178, 145, 0.22), transparent);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.contact-hud-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: rgba(1, 178, 145, 0.35);
+    pointer-events: none;
+}
+
+.contact-hud-corner--tl { top: 22px; left: 22px; border-top: 1px solid; border-left: 1px solid; }
+.contact-hud-corner--tr { top: 22px; right: 22px; border-top: 1px solid; border-right: 1px solid; }
+.contact-hud-corner--bl { bottom: 22px; left: 22px; border-bottom: 1px solid; border-left: 1px solid; }
+.contact-hud-corner--br { bottom: 22px; right: 22px; border-bottom: 1px solid; border-right: 1px solid; }
+
 /* =========================================================
 HEADER
 ========================================================= */
@@ -112,14 +130,29 @@ HEADER
 }
 
 .contact-label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     margin-bottom: 10px;
-    color: rgba(1, 178, 145, 0.78);
-    font-size: 1.1rem;
+    padding: 0.45rem 1.1rem;
+    color: rgba(1, 178, 145, 0.88);
+    font-size: 1.05rem;
     font-weight: 600;
-    letter-spacing: 0.22rem;
+    letter-spacing: 0.2rem;
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(1, 178, 145, 0.16);
+    border: 1px solid rgba(1, 178, 145, 0.24);
+    border-radius: 999px;
+    background: rgba(1, 178, 145, 0.05);
+}
+
+.contact-label::before {
+    content: "";
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #01b291;
+    box-shadow: 0 0 8px rgba(1, 178, 145, 0.45);
 }
 
 #contact h2 {
@@ -171,38 +204,24 @@ margin-top: 20px;
 
 #contact form input,
 #contact form textarea {
-
-width: 100%;
-
-padding: 1.4rem 1.5rem;
-
-margin-top: 0;
-
-background:
-    linear-gradient(180deg, rgba(1, 178, 145, 0.04), rgba(0, 0, 0, 0.85));
-
-color: #fff;
-
-border:
-    1px solid
-    rgba(1, 178, 145, 0.3);
-
-border-radius: 12px;
-
-font-size: 1.5rem;
-
-resize: vertical;
-
-box-sizing: border-box;
-
-box-shadow:
-    inset 0 0 0 1px rgba(1, 178, 145, 0.03);
-
-transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-
+    width: 100%;
+    padding: 1.4rem 1.5rem;
+    margin-top: 0;
+    background:
+        linear-gradient(180deg, rgba(1, 178, 145, 0.05), rgba(0, 0, 0, 0.85));
+    color: #fff;
+    border: 1px solid rgba(1, 178, 145, 0.3);
+    border-radius: 12px;
+    font-size: 1.5rem;
+    resize: vertical;
+    box-sizing: border-box;
+    box-shadow:
+        inset 0 0 0 1px rgba(1, 178, 145, 0.04),
+        inset 3px 0 0 rgba(1, 178, 145, 0.12);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
 #contact form input::placeholder,
@@ -216,10 +235,11 @@ transition:
     border-color: rgba(1, 178, 145, 0.65);
     box-shadow:
         inset 0 0 0 1px rgba(1, 178, 145, 0.08),
+        inset 3px 0 0 rgba(1, 178, 145, 0.55),
         0 0 0 3px rgba(1, 178, 145, 0.08),
         0 0 18px rgba(1, 178, 145, 0.08);
     background:
-        linear-gradient(180deg, rgba(1, 178, 145, 0.06), rgba(0, 0, 0, 0.9));
+        linear-gradient(180deg, rgba(1, 178, 145, 0.07), rgba(0, 0, 0, 0.9));
 }
 
 #contact form textarea {
@@ -251,60 +271,62 @@ BUTTON
 ========================================================= */
 
 #contact form button {
-
-width: 100%;
-
-max-width: 320px;
-align-self: center;
-
-height: 5.6rem;
-
-margin-top: 1rem;
-
-background:
-    linear-gradient(180deg, rgba(1, 178, 145, 0.08), rgba(0, 0, 0, 0.9));
-
-border:
-    1px solid
-    rgba(1, 178, 145, 0.45);
-
-border-radius: 999px;
-
-color: #01b291;
-
-font-size: 1.5rem;
-
-letter-spacing: 0.22rem;
-
-font-weight: 700;
-
-cursor: pointer;
-
-transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-
-
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    align-self: center;
+    height: 5.6rem;
+    margin-top: 1rem;
+    background:
+        linear-gradient(180deg, rgba(1, 178, 145, 0.1), rgba(0, 0, 0, 0.9));
+    border: 1px solid rgba(1, 178, 145, 0.5);
+    border-radius: 999px;
+    color: #01b291;
+    font-size: 1.5rem;
+    letter-spacing: 0.22rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    box-shadow:
+        inset 0 0 0 1px rgba(1, 178, 145, 0.06),
+        0 0 14px rgba(1, 178, 145, 0.07);
 }
 
+#contact form button::before,
+#contact form button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid rgba(1, 178, 145, 0.7);
+    border-left: 1px solid rgba(1, 178, 145, 0.7);
+    transform: translateY(-50%) rotate(-45deg);
+    opacity: 0.75;
+}
+
+#contact form button::before { left: 18px; }
+#contact form button::after { right: 18px; transform: translateY(-50%) rotate(135deg); }
+
 #contact form button:hover {
+    transform: translateY(-1px);
+    background: #01b291;
+    color: #000;
+    box-shadow:
+        0 0 25px rgba(1, 178, 145, 0.35),
+        0 0 40px rgba(1, 178, 145, 0.12);
+    border-color: #01b291;
+}
 
-transform: translateY(-1px);
-
-background: #01b291;
-
-color: #000;
-
-box-shadow:
-    0 0 25px
-    rgba(1, 178, 145, 0.35);
-
-border-color: #01b291;
-
-
+#contact form button:hover::before,
+#contact form button:hover::after {
+    border-color: rgba(0, 0, 0, 0.55);
+    opacity: 0.9;
 }
 
 /* =========================================================
@@ -326,12 +348,35 @@ RESPONSIVE
     padding: 2.4rem 2rem;
 
     border-radius: 16px;
+
+    background:
+        linear-gradient(#01b291, #01b291) left 10px top 10px / 14px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) left 10px top 10px / 1px 14px no-repeat,
+        linear-gradient(#01b291, #01b291) right 10px top 10px / 14px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) right 10px top 10px / 1px 14px no-repeat,
+        linear-gradient(#01b291, #01b291) left 10px bottom 10px / 14px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) left 10px bottom 10px / 1px 14px no-repeat,
+        linear-gradient(#01b291, #01b291) right 10px bottom 10px / 14px 1px no-repeat,
+        linear-gradient(#01b291, #01b291) right 10px bottom 10px / 1px 14px no-repeat,
+        linear-gradient(180deg, rgba(1, 178, 145, 0.08) 0%, rgba(1, 178, 145, 0.02) 18%, rgba(0, 0, 0, 0.92) 100%),
+        linear-gradient(145deg, rgba(1, 178, 145, 0.04), rgba(0, 0, 0, 0.96));
 }
 
 #contact::before {
     left: 20px;
-    width: 70px;
+    right: 20px;
 }
+
+.contact-hud-line {
+    left: 1.6rem;
+    right: 1.6rem;
+    top: 5.6rem;
+}
+
+.contact-hud-corner--tl { top: 16px; left: 16px; }
+.contact-hud-corner--tr { top: 16px; right: 16px; }
+.contact-hud-corner--bl { bottom: 16px; left: 16px; }
+.contact-hud-corner--br { bottom: 16px; right: 16px; }
 
 .contact-header {
     margin-bottom: 1.8rem;
