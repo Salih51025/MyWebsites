@@ -1,118 +1,171 @@
-﻿
-/* =========================================================
+﻿/* =========================================================
    MOBİL
    ========================================================= */
 
 @media (max-width: 600px) {
+    .hud-corners {
+        inset: 14px;
+    }
+
+    .hud-corner {
+        width: 24px;
+        height: 24px;
+    }
+
+    .hud-status {
+        top: 16px;
+        font-size: 9px;
+        letter-spacing: 1.4px;
+        gap: 4px;
+    }
+
+    .hud-status--left {
+        left: 16px;
+    }
+
+    .hud-status--right {
+        right: 16px;
+    }
+
+    .hud-status span {
+        padding-left: 11px;
+    }
+
+    .hud-status--right span {
+        padding-left: 0;
+        padding-right: 11px;
+    }
+
+    .hud-ring--outer {
+        width: min(92vw, 520px);
+        height: min(92vw, 520px);
+    }
+
+    .hud-ring--inner {
+        width: min(70vw, 360px);
+        height: min(70vw, 360px);
+    }
+
+    .hud-arc {
+        width: min(82vw, 430px);
+        height: min(82vw, 430px);
+    }
+
+    .hud-grid {
+        background-size: 30px 30px;
+        opacity: 0.14;
+    }
+
+    .content {
+        width: min(94vw, 720px);
+        padding: 22px 16px;
+    }
+
+    .content-label {
+        font-size: 10px;
+        letter-spacing: 2.4px;
+        margin-bottom: 8px;
+    }
+
+    .content-label::before,
+    .content-label::after {
+        width: 22px;
+    }
+
+    .content-label::before {
+        right: calc(100% + 8px);
+    }
+
+    .content-label::after {
+        left: calc(100% + 8px);
+    }
 
     .content h1 {
-        font-size:
-            clamp(52px, 15vw, 80px);
-
-        letter-spacing: 0;
+        font-size: clamp(52px, 15vw, 80px);
+        letter-spacing: 1px;
     }
-
 
     .content p {
-        margin-top: 3px;
-
-        font-size:
-            clamp(18px, 6vw, 30px);
-
-        letter-spacing: 0;
-
-        -webkit-text-stroke:
-            1px #01b291;
+        margin-top: 6px;
+        font-size: clamp(18px, 6vw, 30px);
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1px #01b291;
     }
-
 
     /* Mobil baloncuklar */
-
-    .bubbles img:nth-child(1) {
-        width: 26px;
-    }
-
-    .bubbles img:nth-child(2) {
-        width: 56px;
-    }
-
-    .bubbles img:nth-child(3) {
-        width: 29px;
-    }
-
-    .bubbles img:nth-child(4) {
-        width: 53px;
-    }
-
-    .bubbles img:nth-child(5) {
-        width: 39px;
-    }
-
-    .bubbles img:nth-child(6) {
-        width: 21px;
-    }
-
-    .bubbles img:nth-child(7) {
-        width: 35px;
-    }
-
-
-    /* Mobilde alt yazı */
+    .bubbles img:nth-child(1) { width: 26px; }
+    .bubbles img:nth-child(2) { width: 56px; }
+    .bubbles img:nth-child(3) { width: 29px; }
+    .bubbles img:nth-child(4) { width: 53px; }
+    .bubbles img:nth-child(5) { width: 39px; }
+    .bubbles img:nth-child(6) { width: 21px; }
+    .bubbles img:nth-child(7) { width: 35px; }
 
     .enter-hint {
         bottom: 24px;
     }
 
-
     .enter-hint span {
         font-size: 9px;
-
-        letter-spacing: 2.5px;
+        letter-spacing: 2.2px;
+        padding: 7px 12px;
     }
 
-
-    .enter-hint::after {
-        font-size: 13px;
+    .enter-hint span::before,
+    .enter-hint span::after {
+        width: 12px;
     }
 }
 
+@media (max-width: 420px) {
+    .hud-status--right {
+        display: none;
+    }
+
+    .hud-status--left {
+        left: 14px;
+        right: 14px;
+    }
+
+    .content-label::before,
+    .content-label::after {
+        display: none;
+    }
+}
 
 /* =========================================================
    HAREKET AZALTMA
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
     .content h1,
-    .content p {
-        animation: none;
-
+    .content p,
+    .content-label,
+    .enter-hint {
+        animation: none !important;
         opacity: 1;
-
         transform: none;
-
         filter: none;
     }
 
+    .enter-hint {
+        transform: translateX(-50%);
+    }
+
+    .bubbles img,
+    .hud-ring--inner::before,
+    .hud-arc--left::before,
+    .hud-arc--right::before,
+    .hud-scan,
+    .enter-hint::after {
+        animation: none !important;
+    }
 
     .bubbles img {
-        animation: none;
-
         opacity: 0;
     }
 
-
-    .enter-hint {
-        animation: none;
-
-        opacity: 1;
-
-        transform:
-            translateX(-50%);
-    }
-
-
-    .enter-hint::after {
-        animation: none;
+    .hud-scan {
+        opacity: 0.2;
     }
 }
