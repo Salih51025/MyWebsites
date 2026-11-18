@@ -6,8 +6,10 @@
     <title>My Personal Website</title>
     <link rel="stylesheet" href="../home/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="script.js"></script>
-<link rel="stylesheet" href="../navbar/nav.css">
+    <link rel="stylesheet" href="../navbar/styles/01-container-logo.css">
+    <link rel="stylesheet" href="../navbar/styles/02-links-hamburger.css">
+    <link rel="stylesheet" href="../navbar/styles/03-responsive.css">
+    <link rel="stylesheet" href="../navbar/styles/04-reduced-motion.css">
 
 </head>
 <body>
@@ -16,7 +18,7 @@
 
     <section class="home">
         <div class="home-img">
-            <img src="../../images/mywebsiteIm.jpeg">
+            <img src="../../images/mywebsiteIm.jpeg" alt="Salih Aydın">
         </div>
         <div class="home-content">
             <h1>Hi it's <span>Salih</span></h1>
@@ -31,46 +33,8 @@
             <a href="../../images/SalihAydinCV.pdf" class="btn">Download My Resume</a>
             </div>
     </section>
-  <script src="../navbar/nav.js"></script>
-
-<script>
-
-fetch("../navbar/nav.html")
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error("Navbar yüklenemedi.");
-        }
-
-        return response.text();
-
-    })
-    .then(html => {
-
-        const placeholder =
-            document.getElementById("nav-placeholder");
-
-        if (!placeholder) {
-            throw new Error(
-                "nav-placeholder bulunamadı."
-            );
-        }
-
-        placeholder.innerHTML = html;
-
-        initNavbar();
-
-    })
-    .catch(error => {
-
-        console.error(
-            "Navbar error:",
-            error
-        );
-
-    });
-
-</script>
+  <script src="../navbar/nav.init.js"></script>
+  <script src="../navbar/nav.loader.js"></script>
 
 
 </body>

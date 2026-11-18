@@ -1,142 +1,78 @@
 function initNavbar() {
-
-const navContainer =
-    document.querySelector(".nav-container");
-
-if (!navContainer) {
-    console.error("Navbar bulunamadı.");
-    return;
-}
-
-
-const menuToggle =
-    navContainer.querySelector(".menu-toggle");
-
-const nav =
-    navContainer.querySelector("nav");
-
-const navLinks =
-    navContainer.querySelectorAll("nav a");
-
-
-if (!menuToggle || !nav) {
-    console.error("Navbar elemanları eksik.");
-    return;
-}
-
-
-/* =====================================================
-   AKTİF SAYFAYI BUL
-   ===================================================== */
-
-const currentPage =
-    window.location.pathname
-        .split("/")
-        .pop()
-        .toLowerCase() || "home.html";
-
-
-navLinks.forEach(link => {
-
-    const page =
-        link.dataset.page?.toLowerCase();
-
-
-    if (page === currentPage) {
-
-        link.classList.add("active");
-
-    } else {
-
-        link.classList.remove("active");
-
+    const navContainer = document.querySelector(".nav-container");
+    if (!navContainer) {
+        return;
     }
 
-});
+    const menuToggle = navContainer.querySelector(".menu-toggle");
+    const nav = navContainer.querySelector("nav");
+    const navLinks = navContainer.querySelectorAll("nav a");
 
+    if (!menuToggle || !nav) {
+        return;
+    }
 
-/* =====================================================
-   HAMBURGER
-   ===================================================== */
+    const currentPage =
+        window.location.pathname.split("/").pop()?.toLowerCase() || "home.html";
 
-menuToggle.addEventListener("click", event => {
-
-    event.stopPropagation();
-
-    const isOpen =
-        menuToggle.classList.toggle("active");
-
-    nav.classList.toggle(
-        "active",
-        isOpen
-    );
-
-    menuToggle.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-    );
-
-});
-
-
-/* =====================================================
-   NAV LINK
-   ===================================================== */
-
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        /*
-            Tıklanan linki görsel olarak
-            hemen aktif göster.
-        */
-
-        navLinks.forEach(item => {
-            item.classList.remove("active");
-        });
-
-        link.classList.add("active");
-
-
-        /*
-            Mobil menüyü kapat.
-        */
-
-        menuToggle.classList.remove("active");
-
-        nav.classList.remove("active");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
+    navLinks.forEach((link) => {
+        const page = link.dataset.page?.toLowerCase();
+        link.classList.toggle("active", page === currentPage);
     });
 
-});
+    menuToggle.addEventListener("click", (event) => {
+        event.stopPropagation();
 
+        const isOpen = menuToggle.classList.toggle("active");
+        nav.classList.toggle("active", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
 
-/* =====================================================
-   MENÜ DIŞINA TIKLAMA
-   ===================================================== */
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            navLinks.forEach((item) => item.classList.remove("active"));
+            link.classList.add("active");
 
-document.addEventListener("click", event => {
+            menuToggle.classList.remove("active");
+            nav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+        });
+    });
 
-    if (!navContainer.contains(event.target)) {
+    document.addEventListener("click", (event) => {
+        if (!navContainer.contains(event.target)) {
+            menuToggle.classList.remove("active");
+            nav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+}
 
-        menuToggle.classList.remove("active");
-
-        nav.classList.remove("active");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
+function loadNavbar() {
+    const placeholder = document.getElementById("nav-placeholder");
+    if (!placeholder || placeholder.dataset.loaded === "true") {
+        return;
     }
 
-});
+    fetch("../navbar/nav.html")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Navbar yüklenemedi.");
+            }
+            return response.text();
+        })
+        .then((html) => {
+            placeholder.innerHTML = html;
+            placeholder.dataset.loaded = "true";
+            initNavbar();
+        })
+        .catch((error) => {
+            console.error("Navbar error:", error);
+        });
+}
 
-
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadNavbar);
+} else {
+    loadNavbar();
 }

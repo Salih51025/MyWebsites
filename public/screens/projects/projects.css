@@ -607,6 +607,170 @@ REDUCED MOTION
 
 }
 /* =========================================================
+   PROJECTS INTRO
+   ========================================================= */
+
+.projects-intro {
+    max-width: 900px;
+    margin: 0 auto 56px;
+    text-align: center;
+}
+
+.projects-label {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: rgba(1, 178, 145, 0.7);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.28rem;
+}
+
+.projects-intro h1 {
+    margin: 0 0 16px;
+    color: #01b291;
+    font-size: clamp(3rem, 4vw, 4.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.04rem;
+}
+
+.projects-intro p {
+    margin: 0 auto;
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: clamp(1.4rem, 1.2vw, 1.7rem);
+    line-height: 1.8;
+}
+
+/* =========================================================
+   PROJECT HEADER & DESCRIPTION
+   ========================================================= */
+
+.project-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.project-header .project-number {
+    margin-bottom: 0;
+    min-width: 3.2rem;
+    padding-top: 0.2rem;
+}
+
+.project-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.project-category {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+}
+
+.project-title h2 {
+    margin: 0;
+    color: #01b291;
+    font-size: clamp(2rem, 2.4vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.04rem;
+}
+
+.project-description {
+    width: 100%;
+    padding: 4px 8px 0;
+}
+
+.project-description p {
+    margin: 0 0 14px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: clamp(1.35rem, 1.1vw, 1.55rem);
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.015rem;
+    text-align: left;
+}
+
+.project-description p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1000px) {
+    .projects-intro {
+        margin-bottom: 40px;
+    }
+
+    .project-header {
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .project-description {
+        padding: 2px 4px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-intro {
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .projects-label {
+        font-size: 1rem;
+        letter-spacing: 0.22rem;
+    }
+
+    .projects-intro p {
+        font-size: 1.35rem;
+        line-height: 1.7;
+    }
+
+    .project-header {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .project-header .project-number {
+        min-width: 0;
+        padding-top: 0;
+    }
+
+    .project-category {
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+        line-height: 1.6;
+    }
+
+    .project-description {
+        padding: 0;
+    }
+
+    .project-description p {
+        font-size: 1.3rem;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 400px) {
+    .project-title h2 {
+        font-size: 1.8rem;
+    }
+
+    .project-description p {
+        font-size: 1.25rem;
+    }
+}
+
+/* =========================================================
    IMAGE LIGHTBOX
    ========================================================= */
 

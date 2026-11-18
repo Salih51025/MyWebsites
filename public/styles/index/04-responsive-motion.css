@@ -1,0 +1,118 @@
+﻿
+/* =========================================================
+   MOBİL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .content h1 {
+        font-size:
+            clamp(52px, 15vw, 80px);
+
+        letter-spacing: 0;
+    }
+
+
+    .content p {
+        margin-top: 3px;
+
+        font-size:
+            clamp(18px, 6vw, 30px);
+
+        letter-spacing: 0;
+
+        -webkit-text-stroke:
+            1px #01b291;
+    }
+
+
+    /* Mobil baloncuklar */
+
+    .bubbles img:nth-child(1) {
+        width: 26px;
+    }
+
+    .bubbles img:nth-child(2) {
+        width: 56px;
+    }
+
+    .bubbles img:nth-child(3) {
+        width: 29px;
+    }
+
+    .bubbles img:nth-child(4) {
+        width: 53px;
+    }
+
+    .bubbles img:nth-child(5) {
+        width: 39px;
+    }
+
+    .bubbles img:nth-child(6) {
+        width: 21px;
+    }
+
+    .bubbles img:nth-child(7) {
+        width: 35px;
+    }
+
+
+    /* Mobilde alt yazı */
+
+    .enter-hint {
+        bottom: 24px;
+    }
+
+
+    .enter-hint span {
+        font-size: 9px;
+
+        letter-spacing: 2.5px;
+    }
+
+
+    .enter-hint::after {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   HAREKET AZALTMA
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .content h1,
+    .content p {
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+
+        filter: none;
+    }
+
+
+    .bubbles img {
+        animation: none;
+
+        opacity: 0;
+    }
+
+
+    .enter-hint {
+        animation: none;
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%);
+    }
+
+
+    .enter-hint::after {
+        animation: none;
+    }
+}

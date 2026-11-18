@@ -13,7 +13,19 @@
 
 <link
     rel="stylesheet"
-    href="../navbar/nav.css"
+    href="../navbar/styles/01-container-logo.css"
+>
+<link
+    rel="stylesheet"
+    href="../navbar/styles/02-links-hamburger.css"
+>
+<link
+    rel="stylesheet"
+    href="../navbar/styles/03-responsive.css"
+>
+<link
+    rel="stylesheet"
+    href="../navbar/styles/04-reduced-motion.css"
 >
 
 <!-- =====================================================
@@ -22,7 +34,15 @@
 
 <link
     rel="stylesheet"
-    href="../projects/projects.css"
+    href="../projects/styles/01-page-and-cards.css"
+>
+<link
+    rel="stylesheet"
+    href="../projects/styles/02-intro-header-description.css"
+>
+<link
+    rel="stylesheet"
+    href="../projects/styles/03-lightbox.css"
 >
 
 </head> <body>
@@ -626,7 +646,7 @@
             <div class="project-header">
 
                 <span class="project-number">
-                    04
+                    05
                 </span>
 
                 <div class="project-title">
@@ -848,73 +868,15 @@
      NAVBAR JAVASCRIPT
      ===================================================== -->
 
-<script src="../navbar/nav.js"></script>
-
-<script>
-
-    fetch("../navbar/nav.html")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Navbar yüklenemedi."
-                );
-
-            }
-
-            return response.text();
-
-        })
-
-        .then(html => {
-
-            const placeholder =
-                document.getElementById(
-                    "nav-placeholder"
-                );
-
-
-            if (!placeholder) {
-
-                throw new Error(
-                    "nav-placeholder bulunamadı."
-                );
-
-            }
-
-
-            placeholder.innerHTML = html;
-
-
-            if (
-                typeof initNavbar === "function"
-            ) {
-
-                initNavbar();
-
-            }
-
-        })
-
-        .catch(error => {
-
-            console.error(
-                "Navbar error:",
-                error
-            );
-
-        });
-
-</script>
+<script src="../navbar/nav.init.js"></script>
+<script src="../navbar/nav.loader.js"></script>
 
 
 <!-- =====================================================
      PROJECT IMAGE GALLERY JAVASCRIPT
      ===================================================== -->
 
-<script src="../projects/projects.js"></script>
+<script src="../projects/scripts/projects-lightbox-controller.js"></script>
 
 
 </body> </html>

@@ -1,0 +1,19 @@
+﻿
+/* =========================================================
+REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+.nav-container,
+.nav-container nav,
+.nav-container nav a,
+.nav-container nav a::after,
+.nav-container .logo,
+.nav-container .menu-toggle span {
+
+    transition: none;
+}
+
+
+}
