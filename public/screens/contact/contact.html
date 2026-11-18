@@ -45,8 +45,22 @@
     (function () {
         const form = document.getElementById("contact-form");
         const emailInput = document.getElementById("email_id");
+        const messageInput = document.getElementById("message");
         const status = document.getElementById("form-status");
         if (!form || !emailInput || !status) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const service = params.get("service");
+        const serviceMessages = {
+            web: "Hello Salih, I would like to get more information about your website development services and discuss my project details.\n\nProject/Need: \nExpected timeline: \nAdditional notes: ",
+            mobile: "Hello Salih, I would like to get more information about your mobile app development services for iOS and Android.\n\nApp idea/Need: \nTarget platforms (iOS/Android): \nAdditional notes: ",
+            uiux: "Hello Salih, I would like to get more information about your UI/UX design services.\n\nProject/Product: \nDesign areas needed: \nAdditional notes: ",
+            custom: "Hello Salih, I would like to get more information about your custom software solutions.\n\nNeed/Problem: \nExpected solution: \nAdditional notes: "
+        };
+
+        if (messageInput && service && serviceMessages[service] && !messageInput.value.trim()) {
+            messageInput.value = serviceMessages[service];
+        }
 
         form.addEventListener("submit", function (event) {
             event.preventDefault();
