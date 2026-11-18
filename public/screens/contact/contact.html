@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Salih</title>
+    <title data-i18n-title="title.contact">Contact | Salih</title>
     <link rel="stylesheet" href="../contact/contact.css">
     <link rel="stylesheet" href="../navbar/styles/01-container-logo.css">
     <link rel="stylesheet" href="../navbar/styles/02-links-hamburger.css">
@@ -25,20 +25,21 @@
         <span class="contact-hud-corner contact-hud-corner--bl" aria-hidden="true"></span>
         <span class="contact-hud-corner contact-hud-corner--br" aria-hidden="true"></span>
         <div class="contact-header">
-            <span class="contact-label">COMMUNICATION CHANNEL</span>
-            <h2>Contact</h2>
-            <p class="contact-subtitle">Send a message to initiate contact.</p>
+            <span class="contact-label" data-i18n="contact.label">COMMUNICATION CHANNEL</span>
+            <h2 data-i18n="contact.title">Contact</h2>
+            <p class="contact-subtitle" data-i18n="contact.subtitle">Send a message to initiate contact.</p>
         </div>
         <form id="contact-form">
-            <input type="text" id="fullName" placeholder="Full Name" required />
-            <input type="email" id="email_id" placeholder="Email" required />
-            <textarea id="message" placeholder="Message" required></textarea>
+            <input type="text" id="fullName" placeholder="Full Name" data-i18n-placeholder="contact.placeholder.name" required />
+            <input type="email" id="email_id" placeholder="Email" data-i18n-placeholder="contact.placeholder.email" required />
+            <textarea id="message" placeholder="Message" data-i18n-placeholder="contact.placeholder.message" required></textarea>
             <p id="form-status" class="form-status" aria-live="polite"></p>
-            <button type="submit">Send</button>
+            <button type="submit" data-i18n="contact.send">Send</button>
         </form>
     </div>
   </div>
 
+<script src="../../lang.js"></script>
 <script src="../navbar/nav.init.js"></script>
 <script src="../navbar/nav.loader.js"></script>
 <script>
@@ -51,15 +52,106 @@
 
         const params = new URLSearchParams(window.location.search);
         const service = params.get("service");
-        const serviceMessages = {
-            web: "Hello Salih, I would like to get more information about your website development services and discuss my project details.\n\nProject/Need: \nExpected timeline: \nAdditional notes: ",
-            mobile: "Hello Salih, I would like to get more information about your mobile app development services for iOS and Android.\n\nApp idea/Need: \nTarget platforms (iOS/Android): \nAdditional notes: ",
-            uiux: "Hello Salih, I would like to get more information about your UI/UX design services.\n\nProject/Product: \nDesign areas needed: \nAdditional notes: ",
-            custom: "Hello Salih, I would like to get more information about your custom software solutions.\n\nNeed/Problem: \nExpected solution: \nAdditional notes: "
+        let prefillApplied = false;
+
+        function getText(key) {
+            if (window.siteI18n && typeof window.siteI18n.t === "function") {
+                return window.siteI18n.t(key);
+            }
+            return "";
+        }
+
+        function getPrefillMessage(serviceKey) {
+            const key = "contact.prefill." + serviceKey;
+            return getText(key);
+        }
+
+        function applyServicePrefill(force) {
+            if (!messageInput || !service) return;
+            const nextMessage = getPrefillMessage(service);
+            if (!nextMessage) return;
+
+            if (force || !messageInput.value.trim()) {
+                messageInput.value = nextMessage;
+                prefillApplied = true;
+                return;
+            }
+
+            if (prefillApplied) {
+                const enMsg = (window.siteI18n && window.siteI18n.getCurrentLang && window.siteI18n.getCurrentLang() === "tr")
+                    ? "" : "";
+                // if message still equals either known prefill, allow update on lang change
+            }
+        }
+
+        function setStatus(key, type) {
+            const text = getText(key);
+            status.textContent = text || "";
+            status.className = "form-status" + (type ? " " + type : "");
+            status.dataset.statusKey = key || "";
+            status.dataset.statusType = type || "";
+        }
+
+        // initial prefill (after translations may apply)
+        const tryInitialPrefill = function () {
+            if (!messageInput || !service) return;
+            if (!messageInput.value.trim()) {
+                const msg = getPrefillMessage(service);
+                if (msg) {
+                    messageInput.value = msg;
+                    prefillApplied = true;
+                }
+            }
         };
 
-        if (messageInput && service && serviceMessages[service] && !messageInput.value.trim()) {
-            messageInput.value = serviceMessages[service];
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", tryInitialPrefill);
+        } else {
+            tryInitialPrefill();
+        }
+
+        document.addEventListener("site:languagechange", function () {
+            if (messageInput && service) {
+                const current = messageInput.value;
+                const en = (window.siteI18n && window.siteI18n.t) ? "" : "";
+                // Recompute both possible prefills by temporarily checking translations directly
+                const prevLang = null;
+                const trPrefill = (window.siteI18n && window.siteI18n.getCurrentLang() === "tr") ? getPrefillMessage(service) : null;
+                // Better approach: if prefillApplied or current matches any known prefills, replace with new lang prefill
+                const keys = ["contact.prefill.web", "contact.prefill.mobile", "contact.prefill.uiux", "contact.prefill.custom"];
+                const known = [];
+                if (window.siteI18n) {
+                    // We don't have direct access to both dicts, so infer: if user hasn't customized much beyond exact prefill, update.
+                    // Try replace when current equals last applied or equals prefill for same service in previous state by checking common case:
+                }
+                const newMsg = getPrefillMessage(service);
+                if (newMsg && (prefillApplied || !current.trim())) {
+                    // If user edited, avoid overwriting. Simple heuristic: overwrite only if empty or was auto-applied.
+                    if (!current.trim() || prefillApplied) {
+                        messageInput.value = newMsg;
+                        prefillApplied = true;
+                    }
+                }
+            }
+
+            if (status.dataset.statusKey) {
+                setStatus(status.dataset.statusKey, status.dataset.statusType || "");
+            }
+        });
+
+        if (messageInput) {
+            messageInput.addEventListener("input", function () {
+                // if user edits after prefill, don't auto-replace on language changes except when empty logic won't trigger
+                if (service) {
+                    const currentPrefill = getPrefillMessage(service);
+                    if (messageInput.value !== currentPrefill) {
+                        // keep prefillApplied true only conceptually not necessary; simpler: mark as customized
+                    }
+                    if (messageInput.value.trim() && messageInput.value !== currentPrefill) {
+                        prefillApplied = false;
+                    }
+                }
+            });
         }
 
         form.addEventListener("submit", function (event) {
@@ -69,20 +161,17 @@
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
             if (!emailPattern.test(email)) {
-                status.textContent = "Lütfen geçerli bir e-posta adresi girin.";
-                status.className = "form-status error";
+                setStatus("contact.status.invalidEmail", "error");
                 emailInput.focus();
                 return;
             }
 
-            status.textContent = "Mesaj gönderiliyor...";
-            status.className = "form-status pending";
+            setStatus("contact.status.sending", "pending");
 
             if (typeof SendMail === "function") {
                 SendMail();
             } else {
-                status.textContent = "Gönderim şu anda başlatılamadı.";
-                status.className = "form-status error";
+                setStatus("contact.status.failed", "error");
             }
         });
     })();

@@ -482,6 +482,28 @@ p{
     }
 }
 
+@keyframes words-tr{
+    0%, 20%{
+        content: "Web Geliştirici";
+    }
+    21%, 40%{
+        content: "Geliştirici";
+    }
+    41%, 60%{
+        content: "Web Tasarımcısı";
+    }
+    61%, 80%{
+        content: "Flutter Geliştirici";
+    }
+    80%, 100%{
+        content: "Script Yazarı";
+    }
+}
+
+html[data-lang="tr"] .typing-text span::before{
+    animation-name: words-tr;
+}
+
 
 @media (max-width: 1000px){
     .home{

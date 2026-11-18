@@ -15,6 +15,9 @@
             placeholder.innerHTML = html;
             placeholder.dataset.loaded = "true";
             initNavbar();
+            if (window.siteI18n && typeof window.siteI18n.applyTranslations === "function") {
+                window.siteI18n.applyTranslations(document);
+            }
         })
         .catch((error) => {
             console.error("Navbar error:", error);
