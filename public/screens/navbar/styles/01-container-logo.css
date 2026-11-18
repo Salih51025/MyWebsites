@@ -1,6 +1,6 @@
 /* =========================================================
 NAVBAR
-Minimal Futuristic Portfolio
+Minimal Futuristic Portfolio - JARVIS HUD Headerbar
 ========================================================= */
 
 /* =========================================================
@@ -9,7 +9,7 @@ RESET
 
 .nav-container,
 .nav-container * {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* =========================================================
@@ -17,42 +17,132 @@ NAVBAR CONTAINER
 ========================================================= */
 
 .nav-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 80px);
+    max-width: 1250px;
+    min-height: 68px;
+    padding: 7px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    isolation: isolate;
+    overflow: visible;
+    background:
+        linear-gradient(180deg, rgba(1, 178, 145, 0.08) 0%, rgba(1, 178, 145, 0.02) 22%, rgba(0, 0, 0, 0.78) 100%),
+        linear-gradient(90deg, rgba(1, 178, 145, 0.06) 0%, rgba(0, 0, 0, 0.82) 18%, rgba(0, 0, 0, 0.82) 82%, rgba(1, 178, 145, 0.06) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(1, 178, 145, 0.22);
+    border-radius: 14px;
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(1, 178, 145, 0.05) inset,
+        0 0 28px rgba(1, 178, 145, 0.08);
+    z-index: 1000;
+}
 
-position: fixed;
+.nav-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent 0%, rgba(1, 178, 145, 0.18) 50%, transparent 100%) top center / 55% 1px no-repeat,
+        repeating-linear-gradient(90deg, rgba(1, 178, 145, 0.06) 0 1px, transparent 1px 18px);
+    opacity: 0.25;
+    z-index: 0;
+    overflow: hidden;
+}
 
-top: 20px;
-left: 50%;
+.nav-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    right: 18px;
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, transparent, rgba(1, 178, 145, 0.12), transparent);
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: 0;
+}
 
-transform: translateX(-50%);
+.nav-container > * {
+    position: relative;
+    z-index: 2;
+}
 
-width: calc(100% - 80px);
-max-width: 1250px;
+/* =========================================================
+HUD DECORATIVE ELEMENTS
+========================================================= */
 
-min-height: 68px;
+.hud-frame {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.95;
+}
 
-padding: 7px 22px;
+.hud-frame--tl {
+    top: 6px;
+    left: 8px;
+    border-top: 1.5px solid rgba(1, 178, 145, 0.85);
+    border-left: 1.5px solid rgba(1, 178, 145, 0.85);
+    box-shadow: -2px -2px 8px rgba(1, 178, 145, 0.18);
+}
 
-display: flex;
+.hud-frame--tr {
+    top: 6px;
+    right: 8px;
+    border-top: 1.5px solid rgba(1, 178, 145, 0.85);
+    border-right: 1.5px solid rgba(1, 178, 145, 0.85);
+    box-shadow: 2px -2px 8px rgba(1, 178, 145, 0.18);
+}
 
-align-items: center;
-justify-content: space-between;
+.hud-frame--bl {
+    bottom: 6px;
+    left: 8px;
+    border-bottom: 1.5px solid rgba(1, 178, 145, 0.85);
+    border-left: 1.5px solid rgba(1, 178, 145, 0.85);
+    box-shadow: -2px 2px 8px rgba(1, 178, 145, 0.18);
+}
 
-background: rgba(0, 0, 0, 0.82);
+.hud-frame--br {
+    bottom: 6px;
+    right: 8px;
+    border-bottom: 1.5px solid rgba(1, 178, 145, 0.85);
+    border-right: 1.5px solid rgba(1, 178, 145, 0.85);
+    box-shadow: 2px 2px 8px rgba(1, 178, 145, 0.18);
+}
 
-backdrop-filter: blur(14px);
--webkit-backdrop-filter: blur(14px);
+.hud-scanline {
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    background: linear-gradient(110deg, transparent 0%, transparent 42%, rgba(1, 178, 145, 0.1) 50%, transparent 58%, transparent 100%);
+    background-size: 220% 100%;
+    background-position: 120% 0;
+    opacity: 0.28;
+    animation: hudScan 8s linear infinite;
+}
 
-border: 1px solid rgba(1, 178, 145, 0.14);
-
-border-radius: 14px;
-
-box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(1, 178, 145, 0.025);
-
-z-index: 1000;
-
-
+@keyframes hudScan {
+    0% {
+        background-position: 120% 0;
+    }
+    100% {
+        background-position: -120% 0;
+    }
 }
 
 /* =========================================================
@@ -60,39 +150,58 @@ LOGO
 ========================================================= */
 
 .nav-container .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #01b291;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    text-shadow:
+        0 0 10px rgba(1, 178, 145, 0.18),
+        0 0 22px rgba(1, 178, 145, 0.06);
+    transition:
+        transform 0.3s ease,
+        text-shadow 0.3s ease,
+        filter 0.3s ease;
+}
 
-display: block;
+.nav-container .logo-mark {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #01b291;
+    box-shadow:
+        0 0 0 3px rgba(1, 178, 145, 0.12),
+        0 0 10px rgba(1, 178, 145, 0.45);
+    flex: 0 0 auto;
+}
 
-color: #01b291;
+.nav-container .logo-text {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+}
 
-font-family: Arial, Helvetica, sans-serif;
-
-font-size: 28px;
-
-font-weight: 700;
-
-letter-spacing: 0.5px;
-
-text-decoration: none;
-
-padding: 5px 8px;
-
-cursor: pointer;
-
-transition:
-    transform 0.3s ease,
-    text-shadow 0.3s ease;
-
-
+.nav-container .logo-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(1, 178, 145, 0.7), rgba(1, 178, 145, 0));
+    opacity: 0.6;
 }
 
 .nav-container .logo:hover {
-
-transform: scale(1.04);
-
-text-shadow:
-    0 0 8px rgba(1, 178, 145, 0.25),
-    0 0 18px rgba(1, 178, 145, 0.08);
-
-
+    transform: translateY(-1px);
+    text-shadow:
+        0 0 12px rgba(1, 178, 145, 0.3),
+        0 0 24px rgba(1, 178, 145, 0.1);
+    filter: brightness(1.04);
 }
