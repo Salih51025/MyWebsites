@@ -19,11 +19,16 @@
 
   <div class="contact-container">
     <div id="contact">
-        <h2>Contact</h2>
-        <form id="contact-form" onsubmit="SendMail(); return false;">
-            <input type="text" id="fullName" placeholder="Full Name" required /><br />
-            <input type="email" id="email_id" placeholder="Email" required /><br />
-            <textarea id="message" placeholder="Message" required></textarea><br />
+        <div class="contact-header">
+            <span class="contact-label">COMMUNICATION CHANNEL</span>
+            <h2>Contact</h2>
+            <p class="contact-subtitle">Send a message to initiate contact.</p>
+        </div>
+        <form id="contact-form">
+            <input type="text" id="fullName" placeholder="Full Name" required />
+            <input type="email" id="email_id" placeholder="Email" required />
+            <textarea id="message" placeholder="Message" required></textarea>
+            <p id="form-status" class="form-status" aria-live="polite"></p>
             <button type="submit">Send</button>
         </form>
     </div>
@@ -31,6 +36,38 @@
 
 <script src="../navbar/nav.init.js"></script>
 <script src="../navbar/nav.loader.js"></script>
+<script>
+    (function () {
+        const form = document.getElementById("contact-form");
+        const emailInput = document.getElementById("email_id");
+        const status = document.getElementById("form-status");
+        if (!form || !emailInput || !status) return;
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+            if (!emailPattern.test(email)) {
+                status.textContent = "Lütfen geçerli bir e-posta adresi girin.";
+                status.className = "form-status error";
+                emailInput.focus();
+                return;
+            }
+
+            status.textContent = "Mesaj gönderiliyor...";
+            status.className = "form-status pending";
+
+            if (typeof SendMail === "function") {
+                SendMail();
+            } else {
+                status.textContent = "Gönderim şu anda başlatılamadı.";
+                status.className = "form-status error";
+            }
+        });
+    })();
+</script>
 
 </body>
 </html>
