@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Girişi | MyWebsites</title>
+  <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+  <main class="login-wrap">
+    <section class="card login-card stack">
+      <div>
+        <h1 style="margin:0 0 6px;">Admin Girişi</h1>
+        <p class="muted" style="margin:0;">Projeleri yönetmek için giriş yapın.</p>
+      </div>
+      <form id="login-form" class="stack">
+        <label>
+          <span>Kullanıcı Adı</span>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </label>
+        <label>
+          <span>Şifre</span>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="btn primary">Giriş Yap</button>
+        <p id="login-status" class="status" aria-live="polite"></p>
+      </form>
+      <p class="inline-note">Not: Bu alan yalnızca site yöneticisi içindir.</p>
+    </section>
+  </main>
+  <script src="./admin.js"></script>
+  <script>
+    window.AdminApp && window.AdminApp.initLoginPage();
+  </script>
+</body>
+</html>

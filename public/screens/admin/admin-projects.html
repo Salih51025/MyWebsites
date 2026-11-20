@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Proje Yönetimi | MyWebsites</title>
+  <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-header">
+      <div class="admin-title">
+        <h1>Proje Yönetimi</h1>
+        <p>Projects sayfasındaki projeleri ekleyin, düzenleyin, silin ve görsel yönetin.</p>
+      </div>
+      <div class="admin-actions">
+        <a class="btn secondary" href="../projects/projects.html" target="_blank" rel="noopener">Projects Sayfasını Aç</a>
+        <button id="new-project-btn" class="btn success" type="button">Yeni Proje</button>
+        <button id="logout-btn" class="btn" type="button">Çıkış</button>
+      </div>
+    </header>
+
+    <p id="page-status" class="status" aria-live="polite"></p>
+
+    <section class="grid">
+      <div class="stack">
+      <div class="card stack">
+        <div class="flex-between">
+          <h2 class="section-title">Mevcut Projeler</h2>
+          <div class="admin-actions">
+            <button id="save-order-btn" class="btn small primary" type="button">Sıralamayı Kaydet</button>
+            <button id="cleanup-uploads-btn" class="btn small secondary" type="button">Yetim Yüklemeleri Temizle</button>
+            <button id="refresh-btn" class="btn small secondary" type="button">Yenile</button>
+          </div>
+        </div>
+        <p class="help">Satırları "Yukarı/Aşağı" ile yeniden sıralayıp "Sıralamayı Kaydet" ile kalıcı hale getirebilirsiniz.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sıra</th>
+                <th>Başlık (TR)</th>
+                <th>Durum</th>
+                <th>Görsel</th>
+                <th>Sıralama</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody id="projects-table-body">
+              <tr><td colspan="6" class="muted">Yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card stack">
+        <div class="flex-between">
+          <h2 class="section-title">Medya Kütüphanesi (Yüklemeler)</h2>
+          <div class="admin-actions">
+            <button id="refresh-uploads-btn" class="btn small secondary" type="button">Yüklemeleri Yenile</button>
+            <button id="cleanup-broken-refs-btn" class="btn small secondary" type="button">Kırık Referansları Temizle</button>
+          </div>
+        </div>
+        <p class="help"><code>public/uploads/projects</code> altındaki yüklemeleri görüntüler. Arama/filtreleme yapabilir, birden fazla yüklemeyi seçip projeye ekleyebilirsiniz.</p>
+        <div class="uploads-toolbar stack">
+          <div class="row">
+            <label>
+              <span>Yükleme Ara</span>
+              <input type="text" id="uploads-search" placeholder="Dosya adı veya yol ara...">
+            </label>
+            <label>
+              <span>Filtre</span>
+              <select id="uploads-filter">
+                <option value="all">Tümü</option>
+                <option value="referenced">Referanslı</option>
+                <option value="unreferenced">Kullanılmıyor</option>
+              </select>
+            </label>
+          </div>
+          <div class="admin-actions">
+            <button id="select-all-uploads-btn" class="btn small secondary" type="button">Tümünü Seç</button>
+            <button id="clear-upload-selection-btn" class="btn small secondary" type="button">Seçimi Temizle</button>
+            <button id="add-selected-uploads-btn" class="btn small primary" type="button">Seçilenleri Projeye Ekle</button>
+          </div>
+          <p id="uploads-selection-status" class="inline-note"></p>
+        </div>
+        <div id="uploads-list" class="uploads-list">
+          <p class="muted">Yüklemeler henüz yüklenmedi.</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="card stack">
+        <div class="flex-between">
+          <h2 id="form-title" class="section-title">Yeni Proje</h2>
+          <span id="editing-id" class="inline-note"></span>
+        </div>
+        <form id="project-form" class="stack" novalidate>
+          <input type="hidden" id="project-id">
+          <div id="form-errors" class="form-errors" aria-live="polite"></div>
+          <div id="project-preview" class="project-preview" aria-live="polite"></div>
+
+          <div class="row-3">
+            <label>
+              <span>Sıra (Order)</span>
+              <input type="number" id="order" min="1" step="1" required>
+            </label>
+            <label>
+              <span>Numara Etiketi</span>
+              <input type="text" id="numberLabel" placeholder="01">
+            </label>
+            <label>
+              <span>Durum</span>
+              <select id="status">
+                <option value="published">Yayında</option>
+                <option value="draft">Taslak</option>
+              </select>
+            </label>
+          </div>
+
+          <hr class="sep">
+          <div class="flex-between">
+            <h3 class="section-title">İçerik (TR / EN)</h3>
+            <div class="tabs" role="tablist" aria-label="İçerik dili">
+              <button type="button" class="tab-btn active" data-lang-tab="tr" role="tab" aria-selected="true">TR</button>
+              <button type="button" class="tab-btn" data-lang-tab="en" role="tab" aria-selected="false">EN</button>
+            </div>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel active" data-lang-panel="tr" role="tabpanel">
+              <div class="stack">
+                <label>
+                  <span>Kategori (TR)</span>
+                  <input type="text" id="category-tr" required>
+                </label>
+                <label>
+                  <span>Başlık (TR)</span>
+                  <input type="text" id="title-tr" required>
+                </label>
+                <label>
+                  <span>Açıklama Paragrafları (TR, her satır bir paragraf)</span>
+                  <textarea id="description-tr" required></textarea>
+                </label>
+              </div>
+            </div>
+            <div class="tab-panel" data-lang-panel="en" role="tabpanel">
+              <div class="stack">
+                <label>
+                  <span>Category (EN)</span>
+                  <input type="text" id="category-en" required>
+                </label>
+                <label>
+                  <span>Title (EN)</span>
+                  <input type="text" id="title-en" required>
+                </label>
+                <label>
+                  <span>Description Paragraphs (EN, one per line)</span>
+                  <textarea id="description-en" required></textarea>
+                </label>
+              </div>
+            </div>
+          </div>
+          <p class="inline-note">Tüm dillerdeki alanlar kayıt için saklanır; sekmeler yalnızca daha kompakt düzenleme sağlar.</p>
+
+          <div class="images-editor stack">
+            <div class="flex-between">
+              <h3 class="section-title">Görseller</h3>
+              <div class="admin-actions">
+                <input type="file" id="image-upload-input" accept="image/*" multiple>
+                <button type="button" id="upload-images-btn" class="btn secondary small">Yükle ve Ekle</button>
+              </div>
+            </div>
+            <p class="help">Yeni görseller yükleyebilir, medya kütüphanesinden ekleyebilir veya manuel yol girebilirsiniz. Görsel önizlemeleri ve kırık dosya durumları aşağıda gösterilir.</p>
+            <div id="image-list" class="image-list"></div>
+            <button type="button" id="add-image-row-btn" class="btn secondary small">Manuel Görsel Satırı Ekle</button>
+          </div>
+
+          <hr class="sep">
+          <div class="admin-actions">
+            <button type="submit" id="save-project-btn" class="btn primary">Kaydet</button>
+            <button type="button" id="reset-form-btn" class="btn secondary">Formu Temizle</button>
+            <button type="button" id="delete-project-btn" class="btn danger" style="display:none;">Projeyi Sil</button>
+          </div>
+          <p id="form-status" class="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="./admin.js"></script>
+  <script>
+    window.AdminApp && window.AdminApp.initProjectsPage();
+  </script>
+</body>
+</html>
