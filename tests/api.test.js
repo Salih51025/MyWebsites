@@ -211,3 +211,35 @@ test("robots and sitemap are served", async () => {
   assert.equal(sitemap.res.status, 200);
   assert.match(String(sitemap.body), /<urlset/);
 });
+
+test("upload rejects fake image and accepts valid signature", async () => {
+  const jar = new Map();
+  const csrf = await login(jar);
+
+  const fake = new FormData();
+  fake.append("images", new Blob([Buffer.from("not-an-image")], { type: "image/png" }), "fake.png");
+  const bad = await fetch(`${baseUrl}/api/admin/uploads`, {
+    method: "POST",
+    headers: { "X-CSRF-Token": csrf, Cookie: cookieHeader(jar) },
+    body: fake,
+  });
+  mergeCookies(jar, bad);
+  const badBody = await bad.json();
+  assert.equal(bad.status, 400);
+  assert.match(String(badBody.error), /Geçersiz görsel/);
+
+  const pngSig = Buffer.from([137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82]);
+  const goodForm = new FormData();
+  goodForm.append("images", new Blob([pngSig], { type: "image/png" }), "ok.png");
+  const good = await fetch(`${baseUrl}/api/admin/uploads`, {
+    method: "POST",
+    headers: { "X-CSRF-Token": csrf, Cookie: cookieHeader(jar) },
+    body: goodForm,
+  });
+  mergeCookies(jar, good);
+  const goodBody = await good.json();
+  assert.equal(good.status, 201);
+  assert.ok(Array.isArray(goodBody.files));
+  assert.equal(goodBody.files.length, 1);
+  assert.match(goodBody.files[0].src, /^\/uploads\/projects\//);
+});

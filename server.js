@@ -226,6 +226,30 @@ function safeUnlink(filePath) {
   });
 }
 
+async function isValidImageSignature(filePath) {
+  try {
+    const fh = await fsp.open(filePath, "r");
+    try {
+      const buf = Buffer.alloc(12);
+      const { bytesRead } = await fh.read(buf, 0, 12, 0);
+      if (bytesRead < 3) return false;
+      // JPEG
+      if (buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return true;
+      // PNG
+      if (bytesRead >= 8 && buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47 && buf[4] === 0x0d && buf[5] === 0x0a && buf[6] === 0x1a && buf[7] === 0x0a) return true;
+      // GIF87a/GIF89a
+      if (bytesRead >= 6 && buf[0] === 0x47 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x38 && (buf[4] === 0x37 || buf[4] === 0x39) && buf[5] === 0x61) return true;
+      // WEBP: RIFF....WEBP
+      if (bytesRead >= 12 && buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46 && buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50) return true;
+      return false;
+    } finally {
+      await fh.close();
+    }
+  } catch (_e) {
+    return false;
+  }
+}
+
 async function cleanupOrphanUploads(projects) {
   ensureStorage();
   const used = new Set();
@@ -501,11 +525,19 @@ app.delete("/api/admin/projects/:id", requireAdmin, requireCsrf, async (req, res
 });
 
 app.post("/api/admin/uploads", requireAdmin, requireCsrf, (req, res) => {
-  upload.array("images", 20)(req, res, (err) => {
+  upload.array("images", 20)(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message || "Yükleme başarısız." });
     }
-    const files = (req.files || []).map((file) => ({
+    const uploaded = Array.isArray(req.files) ? req.files : [];
+    for (const file of uploaded) {
+      const ok = await isValidImageSignature(file.path);
+      if (!ok) {
+        await Promise.all(uploaded.map((f) => safeUnlink(f.path)));
+        return res.status(400).json({ error: "Geçersiz görsel dosyası. Sadece gerçek PNG/JPEG/GIF/WEBP dosyaları yüklenebilir." });
+      }
+    }
+    const files = uploaded.map((file) => ({
       src: `/uploads/projects/${file.filename}`,
       filename: file.filename,
       originalName: file.originalname,
@@ -621,6 +653,34 @@ app.post("/api/admin/projects/reorder", requireAdmin, requireCsrf, async (req, r
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true, status: "healthy", env: NODE_ENV, timestamp: new Date().toISOString() });
+});
+
+function getSiteBaseUrl(req) {
+  const configured = normalizeText(process.env.SITE_URL).replace(/\/+$/, "");
+  if (configured) return configured;
+  const proto = req.protocol || "http";
+  const host = req.get("host");
+  return host ? `${proto}://${host}` : "";
+}
+
+app.get("/robots.txt", (req, res) => {
+  const base = getSiteBaseUrl(req);
+  const lines = ["User-agent: *", "Allow: /"];
+  if (base) lines.push(`Sitemap: ${base}/sitemap.xml`);
+  res.type("text/plain").send(lines.join("\n") + "\n");
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  const base = getSiteBaseUrl(req);
+  const urls = ["/", "/screens/home/home.html", "/screens/projects/projects.html", "/screens/contact/contact.html"];
+  const body = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls.map((u) => `  <url><loc>${base}${u}</loc></url>`),
+    "</urlset>",
+    "",
+  ].join("\n");
+  res.type("application/xml").send(body);
 });
 
 app.use(express.static(PUBLIC_DIR));
