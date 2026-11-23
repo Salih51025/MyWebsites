@@ -8,21 +8,40 @@ const multer = require("multer");
 const path = require("path");
 const session = require("express-session");
 const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const compression = require("compression");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.disable("x-powered-by");
+app.use(helmet({
+  contentSecurityPolicy: false, // Site uses inline scripts/styles and external CDNs; CSP can be tightened later with a full allowlist.
+  crossOriginEmbedderPolicy: false,
+}));
+app.use(compression());
+
 const ROOT_DIR = __dirname;
-const DATA_DIR = path.join(ROOT_DIR, "data");
-const DATA_FILE = path.join(DATA_DIR, "projects.json");
-const PUBLIC_DIR = path.join(ROOT_DIR, "public");
-const UPLOAD_DIR = path.join(PUBLIC_DIR, "uploads", "projects");
+const DATA_DIR = process.env.DATA_DIR || path.join(ROOT_DIR, "data");
+const DATA_FILE = process.env.DATA_FILE || path.join(DATA_DIR, "projects.json");
+const PUBLIC_DIR = process.env.PUBLIC_DIR || path.join(ROOT_DIR, "public");
+const UPLOAD_DIR = process.env.UPLOAD_DIR || path.join(PUBLIC_DIR, "uploads", "projects");
 
 const ADMIN_USER = process.env.ADMIN_USER || "admin";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 const SESSION_SECRET = process.env.SESSION_SECRET || "change-this-session-secret";
 const NODE_ENV = process.env.NODE_ENV || "development";
 const TRUST_PROXY = process.env.TRUST_PROXY;
+
+if (NODE_ENV === "production") {
+  const missing = [];
+  if (!process.env.ADMIN_PASSWORD) missing.push("ADMIN_PASSWORD");
+  if (!process.env.SESSION_SECRET) missing.push("SESSION_SECRET");
+  if (missing.length) {
+    console.error(`Missing required environment variables for production: ${missing.join(", ")}`);
+    process.exit(1);
+  }
+}
 
 function parseBool(value, fallback = false) {
   if (value == null || value === "") return fallback;
@@ -600,10 +619,21 @@ app.post("/api/admin/projects/reorder", requireAdmin, requireCsrf, async (req, r
   }
 });
 
+app.get("/api/health", (_req, res) => {
+  res.json({ ok: true, status: "healthy", env: NODE_ENV, timestamp: new Date().toISOString() });
+});
+
 app.use(express.static(PUBLIC_DIR));
 
 app.get("/", (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, "index.html"));
+});
+
+app.use((req, res) => {
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).json({ error: "Endpoint bulunamadı." });
+  }
+  return res.status(404).sendFile(path.join(PUBLIC_DIR, "404.html"));
 });
 
 app.use((err, _req, res, _next) => {
@@ -611,12 +641,16 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: "Sunucu hatası." });
 });
 
-app.listen(port, () => {
-  console.log(`Sunucu http://localhost:${port} adresinde çalışıyor`);
-  if (!process.env.ADMIN_PASSWORD || !process.env.SESSION_SECRET) {
-    console.log("Uyarı: ADMIN_PASSWORD ve/veya SESSION_SECRET tanımlı değil. Geliştirme varsayılanları kullanılıyor.");
-  }
-  if (NODE_ENV === "production" && !COOKIE_SECURE && COOKIE_SAMESITE !== "none") {
-    console.log("Uyarı: Production ortamında COOKIE_SECURE=true önerilir.");
-  }
-});
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Sunucu http://localhost:${port} adresinde çalışıyor`);
+    if (!process.env.ADMIN_PASSWORD || !process.env.SESSION_SECRET) {
+      console.log("Uyarı: ADMIN_PASSWORD ve/veya SESSION_SECRET tanımlı değil. Geliştirme varsayılanları kullanılıyor.");
+    }
+    if (NODE_ENV === "production" && !COOKIE_SECURE && COOKIE_SAMESITE !== "none") {
+      console.log("Uyarı: Production ortamında COOKIE_SECURE=true önerilir.");
+    }
+  });
+}
+
+module.exports = app;
