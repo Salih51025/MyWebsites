@@ -186,6 +186,21 @@ PROJECT GALLERY
     perspective: 1200px;
 }
 
+.project-gallery__spacer {
+    display: block;
+    width: max(
+        100%,
+        calc(
+            (var(--gallery-pad) * 2) +
+            var(--stack-card-w) +
+            ((var(--stack-count, 1) - 1) * var(--stack-spread))
+        )
+    );
+    height: 1px;
+    pointer-events: none;
+    visibility: hidden;
+}
+
 /* =========================================================
 IMAGE CONTAINER
 ========================================================= */
@@ -646,6 +661,11 @@ TOUCH / NO-HOVER DEVICES
     transform: translate3d(calc(var(--stack-i) * var(--stack-spread)), 0, 0);
 }
 
+.project-compact .project-gallery {
+    pointer-events: auto;
+    touch-action: pan-x;
+}
+
 }
 
 /* =========================================================
@@ -665,6 +685,7 @@ PROJECTS GRID / COMPACT + DETAIL PANEL
 
 .project-compact {
     appearance: none;
+    font-family: inherit;
     position: relative;
     width: 100%;
     padding: 14px;
@@ -751,6 +772,10 @@ PROJECTS GRID / COMPACT + DETAIL PANEL
     box-shadow: 0 0 12px rgba(1, 178, 145, 0.35);
 }
 
+html[lang="tr"] .project-compact.is-active::after {
+    content: "AKTİF";
+}
+
 .project-compact__preview {
     width: 100%;
 }
@@ -809,7 +834,7 @@ PROJECTS GRID / COMPACT + DETAIL PANEL
 }
 
 .project-detail-panel.is-visible {
-    max-height: 2200px;
+    max-height: 8000px;
     opacity: 1;
     transform: translateY(0);
     clip-path: inset(0 0 0 0 round 14px);
@@ -862,6 +887,10 @@ PROJECTS GRID / COMPACT + DETAIL PANEL
     transform: translateY(-6px);
     pointer-events: none;
     z-index: 6;
+}
+
+html[lang="tr"] .project-detail-panel::after {
+    content: "SİSTEM // PROJE DETAYI";
 }
 
 .project-detail-panel.is-visible::before {
@@ -1200,6 +1229,36 @@ STACK-TRIGGERED CONTENT REVEAL
 
     #projects .project-card .project-gallery {
         margin-bottom: 24px;
+    }
+}
+
+@media (hover: none) and (max-width: 600px), (pointer: coarse) and (max-width: 600px) {
+    #projects .project-card,
+    #projects .project-detail-panel .project-card {
+        padding: 16px;
+    }
+
+    #projects .project-card .project-header,
+    #projects .project-detail-panel .project-card .project-header {
+        margin-bottom: 16px;
+    }
+
+    #projects .project-card .project-gallery,
+    #projects .project-detail-panel .project-card .project-gallery {
+        margin-bottom: 16px;
+    }
+
+    #projects .project-card .project-description,
+    #projects .project-detail-panel .project-card .project-description {
+        min-height: 140px;
+        padding: 12px 13px;
+    }
+}
+
+@media (hover: none) and (max-width: 400px), (pointer: coarse) and (max-width: 400px) {
+    #projects .project-card,
+    #projects .project-detail-panel .project-card {
+        padding: 13px;
     }
 }
 

@@ -433,7 +433,7 @@ p{
 .typing-text{
     font-size: 34px;
     font-weight: 600;
-    min-width: 280px;
+    min-width: min(280px, 100%);
 }
 
 .typing-text span{
@@ -442,25 +442,28 @@ p{
 }
 
 .typing-text span::before{
-    content: "J Software Developer";
+    content: "Web Developer";
     color: #01b291;
     animation: words 20s infinite;
 }
 
 .typing-text span::after{
     content: "";
-    background-color: #020607;
     position: absolute;
-    width: calc(100% + 8px);
+    top: 0;
+    right: -10px;
+    width: 0;
     height: 100%;
-    border-left: 3px solid #020607;
-    right: -8px;
-    animation: cursor 0.6s infinite;
+    border-left: 3px solid #01b291;
+    animation: cursor 0.8s steps(1) infinite;
 }
 
 @keyframes cursor{
-    to{
-        border-left: 3px solid #01b291;
+    0%, 50%{
+        opacity: 1;
+    }
+    50.01%, 100%{
+        opacity: 0;
     }
 }
 

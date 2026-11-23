@@ -33,6 +33,7 @@
   function buildGallery(project, lang) {
     const gallery = createEl("div", "project-gallery");
     const images = Array.isArray(project.images) ? project.images : [];
+    gallery.style.setProperty("--stack-count", String(images.length || 1));
     images.forEach((img) => {
       const imgWrap = createEl("div", "project-image");
       const imageEl = document.createElement("img");
@@ -45,6 +46,9 @@
       imgWrap.appendChild(imageEl);
       gallery.appendChild(imgWrap);
     });
+    const spacer = createEl("div", "project-gallery__spacer");
+    spacer.setAttribute("aria-hidden", "true");
+    gallery.appendChild(spacer);
     return gallery;
   }
 
@@ -148,7 +152,7 @@
           detailPanel.innerHTML = "";
         }
         closeTimer = null;
-      }, 650);
+      }, 920);
     }
 
     function setActive(index) {

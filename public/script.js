@@ -11,7 +11,27 @@ function SendMail() {
         return fallback;
     };
 
-    emailjs.send("service_oajq4ip", "template_2vnw47e", params)
+    if (typeof emailjs === "undefined" || !emailjs || typeof emailjs.send !== "function") {
+        console.error("EmailJS yüklenemedi.");
+        alert(t("contact.status.sendError", "Failed to send email."));
+        var statusMissing = document.getElementById("form-status");
+        if (statusMissing) {
+            statusMissing.textContent = t("contact.status.failed", "Message could not be sent at this time.");
+            statusMissing.className = "form-status error";
+            statusMissing.dataset.statusKey = "contact.status.failed";
+            statusMissing.dataset.statusType = "error";
+        }
+        return;
+    }
+
+    var publicKey = window.EMAILJS_PUBLIC_KEY || window.emailjsPublicKey || "";
+    var serviceId = "service_oajq4ip";
+    var templateId = "template_2vnw47e";
+    var sendPromise = publicKey
+        ? emailjs.send(serviceId, templateId, params, { publicKey: publicKey })
+        : emailjs.send(serviceId, templateId, params);
+
+    sendPromise
         .then(function (res) {
             alert(t("contact.status.success", "Success! Status: ") + res.status);
             document.getElementById("contact-form").reset(); // Formu sıfırlar

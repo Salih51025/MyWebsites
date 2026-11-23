@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../navbar/styles/02-links-hamburger.css">
     <link rel="stylesheet" href="../navbar/styles/03-responsive.css">
     <link rel="stylesheet" href="../navbar/styles/04-reduced-motion.css">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="../../script.js"></script>
 </head>
 <body>
@@ -113,24 +113,10 @@
         document.addEventListener("site:languagechange", function () {
             if (messageInput && service) {
                 const current = messageInput.value;
-                const en = (window.siteI18n && window.siteI18n.t) ? "" : "";
-                // Recompute both possible prefills by temporarily checking translations directly
-                const prevLang = null;
-                const trPrefill = (window.siteI18n && window.siteI18n.getCurrentLang() === "tr") ? getPrefillMessage(service) : null;
-                // Better approach: if prefillApplied or current matches any known prefills, replace with new lang prefill
-                const keys = ["contact.prefill.web", "contact.prefill.mobile", "contact.prefill.uiux", "contact.prefill.custom"];
-                const known = [];
-                if (window.siteI18n) {
-                    // We don't have direct access to both dicts, so infer: if user hasn't customized much beyond exact prefill, update.
-                    // Try replace when current equals last applied or equals prefill for same service in previous state by checking common case:
-                }
                 const newMsg = getPrefillMessage(service);
                 if (newMsg && (prefillApplied || !current.trim())) {
-                    // If user edited, avoid overwriting. Simple heuristic: overwrite only if empty or was auto-applied.
-                    if (!current.trim() || prefillApplied) {
-                        messageInput.value = newMsg;
-                        prefillApplied = true;
-                    }
+                    messageInput.value = newMsg;
+                    prefillApplied = true;
                 }
             }
 
