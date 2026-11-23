@@ -47,6 +47,34 @@
             "projects.title": "Projects",
             "projects.intro": "A selection of projects I've developed using modern technologies and creative problem-solving.",
 
+            "project.1.category": "ERP · Flutter · Firebase",
+            "project.1.title": "ERP Management System",
+            "project.1.p1": "An ERP (Enterprise Resource Planning) application developed using Flutter, Dart and Firebase.",
+            "project.1.p2": "The system allows businesses to manage their daily operations from a centralized platform. It includes user management, inventory management, sales and order management, financial operations, reporting and analysis.",
+            "project.1.p3": "The application was designed with scalability, usability and real-time data management in mind.",
+
+            "project.2.category": "ERP · Flutter · MySQL",
+            "project.2.title": "Factory Management System",
+            "project.2.p1": "A factory-oriented ERP solution developed with Flutter, Dart and MySQL.",
+            "project.2.p2": "The application provides product and category management, order management, payment operations, cargo tracking and reporting tools.",
+            "project.2.p3": "The system was designed to provide managers and employees with a centralized interface for managing factory operations.",
+
+            "project.3.category": "ERP · Flutter · MySQL",
+            "project.3.title": "Shinex Management System",
+            "project.3.p1": "A mobile-oriented factory management solution developed using Flutter, Dart and MySQL.",
+            "project.3.p2": "The application focuses on product management, orders, payments, shipment tracking and business reporting.",
+            "project.3.p3": "Its architecture was designed to simplify daily operations and provide users with fast access to essential business data.",
+
+            "project.4.category": "Mobile · Flutter • Dart • Firebase • Firestore • FCM • Google Maps • GetX",
+            "project.4.title": "Yemeliyiz Suruc Online",
+            "project.4.p1": "Yemeliyiz — Food Ordering Platform",
+            "project.4.p2": "A multi-platform food ordering system built with Flutter & Firebase, featuring Customer, Business, and Admin applications in a unified codebase. Includes real-time orders, location-based restaurant discovery, menu customization, notifications, coupons, and business management.",
+
+            "project.5.category": "WEB · Next.js • React • Node.js • SQLite • CMS • VPS Deployment",
+            "project.5.title": "Deniz Teknik Isi",
+            "project.5.p1": "Deniz Teknik Isı — Corporate Web Platform",
+            "project.5.p2": "A modern corporate website built with Next.js, featuring a custom CMS for managing products, categories, services, and content. Includes responsive UI, product filtering, contact & quote forms, WhatsApp integration, Google Maps, and a standalone Node.js deployment.",
+
             "contact.label": "COMMUNICATION CHANNEL",
             "contact.title": "Contact",
             "contact.subtitle": "Send a message to initiate contact.",
@@ -112,6 +140,34 @@
             "projects.label": "ÇALIŞMALARIM",
             "projects.title": "Projeler",
             "projects.intro": "Modern teknolojiler ve yaratıcı problem çözme yaklaşımıyla geliştirdiğim projelerden bir seçki.",
+
+            "project.1.category": "ERP · Flutter · Firebase",
+            "project.1.title": "ERP Yönetim Sistemi",
+            "project.1.p1": "Flutter, Dart ve Firebase kullanılarak geliştirilmiş bir ERP (Kurumsal Kaynak Planlama) uygulaması.",
+            "project.1.p2": "Sistem, işletmelerin günlük operasyonlarını merkezi bir platformdan yönetmesini sağlar. Kullanıcı yönetimi, stok yönetimi, satış ve sipariş yönetimi, finansal işlemler, raporlama ve analiz özelliklerini içerir.",
+            "project.1.p3": "Uygulama; ölçeklenebilirlik, kullanılabilirlik ve gerçek zamanlı veri yönetimi göz önünde bulundurularak tasarlanmıştır.",
+
+            "project.2.category": "ERP · Flutter · MySQL",
+            "project.2.title": "Fabrika Yönetim Sistemi",
+            "project.2.p1": "Flutter, Dart ve MySQL ile geliştirilmiş fabrika odaklı bir ERP çözümü.",
+            "project.2.p2": "Uygulama; ürün ve kategori yönetimi, sipariş yönetimi, ödeme işlemleri, kargo takibi ve raporlama araçları sunar.",
+            "project.2.p3": "Sistem, yöneticilere ve çalışanlara fabrika operasyonlarını yönetmeleri için merkezi bir arayüz sağlamak amacıyla tasarlanmıştır.",
+
+            "project.3.category": "ERP · Flutter · MySQL",
+            "project.3.title": "Shinex Yönetim Sistemi",
+            "project.3.p1": "Flutter, Dart ve MySQL kullanılarak geliştirilmiş mobil odaklı bir fabrika yönetim çözümü.",
+            "project.3.p2": "Uygulama; ürün yönetimi, siparişler, ödemeler, sevkiyat takibi ve işletme raporlamasına odaklanır.",
+            "project.3.p3": "Mimarisi, günlük operasyonları sadeleştirmek ve kullanıcılara temel iş verilerine hızlı erişim sağlamak üzere tasarlanmıştır.",
+
+            "project.4.category": "Mobil · Flutter • Dart • Firebase • Firestore • FCM • Google Maps • GetX",
+            "project.4.title": "Yemeliyiz Suruc Online",
+            "project.4.p1": "Yemeliyiz — Yemek Sipariş Platformu",
+            "project.4.p2": "Flutter ve Firebase ile geliştirilmiş, tek bir kod tabanında Müşteri, İşletme ve Yönetici uygulamalarını içeren çok platformlu bir yemek sipariş sistemi. Gerçek zamanlı siparişler, konum tabanlı restoran keşfi, menü özelleştirme, bildirimler, kuponlar ve işletme yönetimi özelliklerini içerir.",
+
+            "project.5.category": "WEB · Next.js • React • Node.js • SQLite • CMS • VPS Deployment",
+            "project.5.title": "Deniz Teknik Isı",
+            "project.5.p1": "Deniz Teknik Isı — Kurumsal Web Platformu",
+            "project.5.p2": "Next.js ile geliştirilmiş, ürün, kategori, hizmet ve içerik yönetimi için özel CMS içeren modern bir kurumsal web sitesi. Duyarlı arayüz, ürün filtreleme, iletişim ve teklif formları, WhatsApp entegrasyonu, Google Maps ve bağımsız Node.js dağıtımı özelliklerini içerir.",
 
             "contact.label": "İLETİŞİM KANALI",
             "contact.title": "İletişim",

@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test --test-timeout=30000",
-    "build": "echo \"No build step required for this Express + static public app.\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Building the project...\"",
+    "deploy": "gh-pages -d public"
   },
   "keywords": [],
   "author": "",
@@ -15,16 +16,14 @@
   "engines": {
     "node": "24.x"
   },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
   "dependencies": {
-    "@vercel/blob": "^2.9.0",
-    "compression": "^1.8.2",
-    "connect-pg-simple": "^10.0.0",
     "dotenv": "^16.4.5",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.5",
     "express-session": "^1.18.1",
-    "helmet": "^8.3.0",
-    "multer": "^1.4.5-lts.1",
-    "pg": "^8.23.1"
+    "multer": "^1.4.5-lts.1"
   }
 }

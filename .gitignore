@@ -6,7 +6,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .DS_Store
-.vercel
 
 # Uploaded admin media (runtime content)
 public/uploads/projects/*
