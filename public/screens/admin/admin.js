@@ -170,13 +170,25 @@
     };
 
     function isUploadSrc(src) {
-      return typeof src === "string" && src.startsWith("/uploads/projects/");
+      if (typeof src !== "string" || !src) return false;
+      if (src.startsWith("/uploads/projects/")) return true;
+      try {
+        const url = new URL(src);
+        return url.hostname.endsWith(".blob.vercel-storage.com") || url.pathname.includes("/projects/");
+      } catch (_e) {
+        return false;
+      }
     }
 
     function uploadFilenameFromSrc(src) {
       if (!isUploadSrc(src)) return null;
-      const parts = src.split("/");
-      return parts[parts.length - 1] || null;
+      try {
+        const clean = src.split("?")[0];
+        const parts = clean.split("/");
+        return parts[parts.length - 1] || null;
+      } catch (_e) {
+        return null;
+      }
     }
 
     function setFormErrors(errors) {
@@ -296,7 +308,7 @@
       row.innerHTML = `
         <img src="${escapeAttr(src)}" alt="Önizleme" onerror="this.style.opacity='0.3'" onload="this.style.opacity='1'">
         <div class="image-meta">
-          <label><span>Görsel Yolu/URL</span><input type="text" data-field="src" value="${escapeAttr(src)}" placeholder="/uploads/projects/... veya ../../images/..."></label>
+          <label><span>Görsel Yolu/URL</span><input type="text" data-field="src" value="${escapeAttr(src)}" placeholder="/uploads/projects/... veya https://...blob.vercel-storage.com/..."></label>
           <div class="row">
             <label><span>Alt (TR)</span><input type="text" data-field="alt-tr" value="${escapeAttr(alt.tr || "")}"></label>
             <label><span>Alt (EN)</span><input type="text" data-field="alt-en" value="${escapeAttr(alt.en || "")}"></label>
